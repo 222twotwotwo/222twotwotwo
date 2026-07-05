@@ -1,4 +1,5 @@
 (function () {
+  const CONTENT_INDEX = "./content-index.json";
   const PAPER_INDEX = "./assets/paper/index.json";
   const state = {
     activeTag: "全部",
@@ -54,7 +55,7 @@
       return path;
     }
 
-    return new URL(path, new URL(sourcePath, window.location.href)).pathname.replace(/^\//, "./");
+    return new URL(path, new URL(sourcePath, window.location.href)).href;
   }
 
   function renderInline(text, sourcePath) {
@@ -185,8 +186,8 @@
     return `${minutes} 分钟阅读`;
   }
 
-  function normalizePost(file, markdown) {
-    const sourcePath = `./assets/paper/${file}`;
+  function normalizePost(file, markdown, sourcePathOverride) {
+    const sourcePath = sourcePathOverride || `./assets/paper/${file}`;
     const parsed = parseFrontMatter(markdown);
     const meta = parsed.meta;
     const slug = meta.slug || basename(file);
@@ -206,6 +207,84 @@
       markdown: parsed.body,
       html: renderMarkdown(parsed.body, sourcePath)
     };
+  }
+
+  function flattenContentTree(items) {
+    return items.flatMap((item) => {
+      if (item.children) {
+        return flattenContentTree(item.children);
+      }
+      return item.type === "file" ? [item] : [];
+    });
+  }
+
+  function normalizePath(value) {
+    return String(value || "").replace(/\\/g, "/");
+  }
+
+  function sourcePathFromRecord(record) {
+    if (record.sourcePath) {
+      return normalizePath(record.sourcePath);
+    }
+
+    const path = normalizePath(record.path || record.file || record.name || `${record.slug}.md`);
+    return path.startsWith(".") || path.startsWith("/") ? path : `./${path}`;
+  }
+
+  function fileNameFromRecord(record) {
+    const path = normalizePath(record.file || record.path || record.name || `${record.slug}.md`);
+    return path.split("/").pop();
+  }
+
+  async function normalizeIndexRecord(record) {
+    if (typeof record === "string") {
+      const response = await fetch(`./assets/paper/${record}`);
+      if (!response.ok) {
+        throw new Error(`Unable to load ${record}`);
+      }
+      return normalizePost(record, await response.text());
+    }
+
+    const sourcePath = sourcePathFromRecord(record);
+    const file = fileNameFromRecord(record);
+    let markdown = record.markdown || record.content || record.body || "";
+
+    if (!markdown) {
+      const response = await fetch(sourcePath);
+      if (!response.ok) {
+        throw new Error(`Unable to load ${sourcePath}`);
+      }
+      markdown = await response.text();
+    }
+
+    const post = normalizePost(file, markdown, sourcePath);
+    return {
+      ...post,
+      slug: record.slug || post.slug,
+      title: record.title || post.title,
+      date: record.date || post.date,
+      category: record.category || post.category,
+      tags: Array.isArray(record.tags) ? record.tags : post.tags,
+      readTime: record.readTime || (record.readingTime ? `${record.readingTime} 分钟阅读` : post.readTime),
+      summary: record.summary || record.description || record.excerpt || post.summary,
+      cover: record.cover ? resolveAssetPath(record.cover, sourcePath) : post.cover
+    };
+  }
+
+  function recordsFromContentIndex(index) {
+    if (Array.isArray(index)) {
+      return index;
+    }
+
+    if (Array.isArray(index.posts)) {
+      return index.posts;
+    }
+
+    if (Array.isArray(index.tree)) {
+      return flattenContentTree(index.tree).filter((item) => !item.hidden);
+    }
+
+    return [];
   }
 
   function uniqueTags() {
@@ -326,24 +405,41 @@
     }
   }
 
-  async function loadPosts() {
-    setStatus("正在加载 Markdown 文章...", "loading");
+  async function loadFromContentIndex() {
+    const response = await fetch(CONTENT_INDEX, { cache: "no-cache" });
+    if (!response.ok) {
+      throw new Error(`Unable to load ${CONTENT_INDEX}`);
+    }
 
+    const index = await response.json();
+    const records = recordsFromContentIndex(index);
+    if (!records.length) {
+      throw new Error(`${CONTENT_INDEX} has no posts`);
+    }
+
+    return Promise.all(records.map(normalizeIndexRecord));
+  }
+
+  async function loadFromPaperIndex() {
     const indexResponse = await fetch(PAPER_INDEX);
     if (!indexResponse.ok) {
       throw new Error(`Unable to load ${PAPER_INDEX}`);
     }
 
     const files = await indexResponse.json();
-    const loaded = await Promise.all(
-      files.map(async (file) => {
-        const response = await fetch(`./assets/paper/${file}`);
-        if (!response.ok) {
-          throw new Error(`Unable to load ${file}`);
-        }
-        return normalizePost(file, await response.text());
-      })
-    );
+    return Promise.all(files.map(normalizeIndexRecord));
+  }
+
+  async function loadPosts() {
+    setStatus("正在加载文章索引...", "loading");
+
+    let loaded;
+    try {
+      loaded = await loadFromContentIndex();
+    } catch (error) {
+      console.warn(error);
+      loaded = await loadFromPaperIndex();
+    }
 
     state.posts = loaded.sort((a, b) => String(b.date).localeCompare(String(a.date)));
     state.ready = true;
@@ -368,7 +464,7 @@
     els.postCount.textContent = "离线";
     els.postList.innerHTML = "";
     setStatus(
-      "Markdown 加载失败。请通过本地静态服务器或 GitHub Pages 打开页面，而不是直接双击 file://。",
+      "文章加载失败。请通过本地静态服务器或 GitHub Pages 打开页面，而不是直接双击 file://。",
       "error"
     );
   });

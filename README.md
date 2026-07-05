@@ -12,6 +12,9 @@
   <a href="https://github.com/222twotwotwo">
     <img src="https://img.shields.io/badge/GitHub-222twotwotwo-181717?style=flat-square&logo=github" alt="GitHub" />
   </a>
+  <a href="https://222twotwotwo.github.io/222twotwotwo/">
+    <img src="https://img.shields.io/badge/Blog-222twotwotwo.github.io-0B6E69?style=flat-square&logo=githubpages&logoColor=white" alt="Blog" />
+  </a>
 </p>
 
 ## About Me
@@ -73,6 +76,7 @@ I often read and follow open source projects in these areas:
 ## Contact
 
 - GitHub: [github.com/222twotwotwo](https://github.com/222twotwotwo)
+- Blog: [222twotwotwo.github.io/222twotwotwo](https://222twotwotwo.github.io/222twotwotwo/)
 - Email: [3379571673@qq.com](mailto:3379571673@qq.com)
 
 ---

@@ -1,0 +1,148 @@
+{
+  "posts": [
+    {
+      "name": "go-backend-engineering-notes.md",
+      "path": "assets/paper/go-backend-engineering-notes.md",
+      "sourcePath": "./assets/paper/go-backend-engineering-notes.md",
+      "slug": "go-backend-engineering-notes",
+      "type": "file",
+      "title": "Go 后端工程化：从能跑到可维护",
+      "description": "把 Go 项目从 demo 推向长期维护时，目录边界、测试策略、错误语义和可观测性会比单个技巧更重要。",
+      "summary": "把 Go 项目从 demo 推向长期维护时，目录边界、测试策略、错误语义和可观测性会比单个技巧更重要。",
+      "date": "2026-07-05",
+      "category": "Go 后端",
+      "tags": [
+        "Go",
+        "后端",
+        "测试"
+      ],
+      "readTime": "5 分钟阅读",
+      "readingTime": 5,
+      "excerpt": "把 Go 项目从 demo 推向长期维护时，目录边界、测试策略、错误语义和可观测性会比单个技巧更重要。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false,
+      "markdown": "---\ntitle: Go 后端工程化：从能跑到可维护\ndate: 2026-07-05\ncategory: Go 后端\ntags: Go, 后端, 测试\nreadTime: 5 分钟阅读\nsummary: 把 Go 项目从 demo 推向长期维护时，目录边界、测试策略、错误语义和可观测性会比单个技巧更重要。\ncover: ../images/avatar.png\n---\n\n我更喜欢把后端工程化理解成一组让代码长期保持可改的约束：模块边界清楚，接口语义稳定，测试覆盖关键行为，运行时问题能够被观察到。\n\n## 目录不是装饰\n\nGo 项目里，目录结构应该服务于业务边界，而不是为了显得复杂。小项目可以保持扁平，等到重复出现再抽象。真正值得优先处理的是包之间的依赖方向。\n\n- 把核心领域逻辑和外部适配层分开。\n- 让配置、日志、存储、网络等基础设施可替换。\n- 对外暴露稳定接口，对内保留重构空间。\n\n## 测试要覆盖行为\n\n我会优先写能锁住行为的测试，而不是机械追求覆盖率数字。尤其是网关、RPC、事务这类系统，边界条件和失败路径通常比快乐路径更值钱。\n\n```go\nfunc TestRegistryInitFailsFast(t *testing.T) {\n    err := InitRegistry(\"unknown\")\n    require.Error(t, err)\n}\n```\n\n## 记录运行现场\n\n每次修复都应该留下三个信息：复现路径、判断依据和验证命令。下一次遇到相似问题时，这些记录比模糊的“经验”更可靠。\n"
+    },
+    {
+      "name": "dubbo-seata-reading-map.md",
+      "path": "assets/paper/dubbo-seata-reading-map.md",
+      "sourcePath": "./assets/paper/dubbo-seata-reading-map.md",
+      "slug": "dubbo-seata-reading-map",
+      "type": "file",
+      "title": "Dubbo / Seata 生态阅读地图",
+      "description": "阅读大型开源项目时，我会先找启动链路、配置入口、核心接口和测试样例，再向具体实现下钻。",
+      "summary": "阅读大型开源项目时，我会先找启动链路、配置入口、核心接口和测试样例，再向具体实现下钻。",
+      "date": "2026-07-04",
+      "category": "开源阅读",
+      "tags": [
+        "Dubbo",
+        "Seata",
+        "RPC"
+      ],
+      "readTime": "4 分钟阅读",
+      "readingTime": 4,
+      "excerpt": "阅读大型开源项目时，我会先找启动链路、配置入口、核心接口和测试样例，再向具体实现下钻。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false,
+      "markdown": "---\ntitle: Dubbo / Seata 生态阅读地图\ndate: 2026-07-04\ncategory: 开源阅读\ntags: Dubbo, Seata, RPC\nreadTime: 4 分钟阅读\nsummary: 阅读大型开源项目时，我会先找启动链路、配置入口、核心接口和测试样例，再向具体实现下钻。\ncover: ../images/avatar.png\n---\n\nDubbo 和 Seata 都不是只靠单个模块就能理解的项目。更稳的方式是先画出运行链路，再把每个关键节点拆开阅读。\n\n## 先找入口\n\n我通常会从 `main`、server bootstrap、配置加载、registry 初始化、protocol handler 这些入口开始。入口清楚了，后面再读接口和扩展点就不容易迷路。\n\n- Dubbo：关注服务导出、引用、协议编解码和治理规则。\n- Seata：关注事务上下文、注册发现、TC / TM / RM 协作。\n- Pixiu：关注外部协议到内部 Dubbo 服务的代理链路。\n\n## 用测试确认理解\n\n读源码时最容易出现的问题，是觉得自己懂了但没有被运行时验证。补一个小测试、跑一条最短链路，往往比继续看十个文件更有效。\n\n> 源码阅读不是收藏路径，而是建立一条可验证的执行链。\n"
+    },
+    {
+      "name": "ai-engineering-workflow.md",
+      "path": "assets/paper/ai-engineering-workflow.md",
+      "sourcePath": "./assets/paper/ai-engineering-workflow.md",
+      "slug": "ai-engineering-workflow",
+      "type": "file",
+      "title": "AI 辅助开发的个人工作流",
+      "description": "AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。",
+      "summary": "AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。",
+      "date": "2026-06-28",
+      "category": "AI 工程",
+      "tags": [
+        "AI Agent",
+        "MCP",
+        "工作流"
+      ],
+      "readTime": "6 分钟阅读",
+      "readingTime": 6,
+      "excerpt": "AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false,
+      "markdown": "---\ntitle: AI 辅助开发的个人工作流\ndate: 2026-06-28\ncategory: AI 工程\ntags: AI Agent, MCP, 工作流\nreadTime: 6 分钟阅读\nsummary: AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。\ncover: ../images/avatar.png\n---\n\n我把 AI 辅助开发当作一个工程协作者，而不是魔法按钮。它擅长快速阅读、生成候选方案、批量修改和验证，但方向、取舍和最终判断仍然要回到工程目标。\n\n## 先让上下文变清楚\n\n在真实项目里，最重要的第一步通常不是写代码，而是建立上下文：入口在哪里、现有风格是什么、测试怎么跑、改动会影响谁。\n\n- 让工具先读代码，再让它动手。\n- 要求它复用已有模式，而不是重新发明结构。\n- 把验证命令和观察结果写清楚。\n\n## MCP 和本地工具\n\nMCP 的价值在于把外部系统、知识库和本地工具接入同一条工作流。对我来说，好的 AI 工程化不是模型更炫，而是上下文获取更可靠、验证更直接。\n\n## 视频素材\n\n后续如果要在文章里插入视频，可以把文件放入 `assets/vedios`，然后用 HTML 片段引用：\n\n```html\n<video controls src=\"../vedios/demo.mp4\"></video>\n```\n"
+    }
+  ],
+  "tree": [
+    {
+      "name": "go-backend-engineering-notes.md",
+      "path": "assets/paper/go-backend-engineering-notes.md",
+      "sourcePath": "./assets/paper/go-backend-engineering-notes.md",
+      "slug": "go-backend-engineering-notes",
+      "type": "file",
+      "title": "Go 后端工程化：从能跑到可维护",
+      "description": "把 Go 项目从 demo 推向长期维护时，目录边界、测试策略、错误语义和可观测性会比单个技巧更重要。",
+      "summary": "把 Go 项目从 demo 推向长期维护时，目录边界、测试策略、错误语义和可观测性会比单个技巧更重要。",
+      "date": "2026-07-05",
+      "category": "Go 后端",
+      "tags": [
+        "Go",
+        "后端",
+        "测试"
+      ],
+      "readTime": "5 分钟阅读",
+      "readingTime": 5,
+      "excerpt": "把 Go 项目从 demo 推向长期维护时，目录边界、测试策略、错误语义和可观测性会比单个技巧更重要。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false
+    },
+    {
+      "name": "dubbo-seata-reading-map.md",
+      "path": "assets/paper/dubbo-seata-reading-map.md",
+      "sourcePath": "./assets/paper/dubbo-seata-reading-map.md",
+      "slug": "dubbo-seata-reading-map",
+      "type": "file",
+      "title": "Dubbo / Seata 生态阅读地图",
+      "description": "阅读大型开源项目时，我会先找启动链路、配置入口、核心接口和测试样例，再向具体实现下钻。",
+      "summary": "阅读大型开源项目时，我会先找启动链路、配置入口、核心接口和测试样例，再向具体实现下钻。",
+      "date": "2026-07-04",
+      "category": "开源阅读",
+      "tags": [
+        "Dubbo",
+        "Seata",
+        "RPC"
+      ],
+      "readTime": "4 分钟阅读",
+      "readingTime": 4,
+      "excerpt": "阅读大型开源项目时，我会先找启动链路、配置入口、核心接口和测试样例，再向具体实现下钻。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false
+    },
+    {
+      "name": "ai-engineering-workflow.md",
+      "path": "assets/paper/ai-engineering-workflow.md",
+      "sourcePath": "./assets/paper/ai-engineering-workflow.md",
+      "slug": "ai-engineering-workflow",
+      "type": "file",
+      "title": "AI 辅助开发的个人工作流",
+      "description": "AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。",
+      "summary": "AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。",
+      "date": "2026-06-28",
+      "category": "AI 工程",
+      "tags": [
+        "AI Agent",
+        "MCP",
+        "工作流"
+      ],
+      "readTime": "6 分钟阅读",
+      "readingTime": 6,
+      "excerpt": "AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false
+    }
+  ],
+  "imageMap": {}
+}
