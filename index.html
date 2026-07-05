@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="222twotwotwo 的个人静态博客，记录 Go 后端、微服务、RPC、AI 工程化与开源学习。"
+    />
+    <title>222twotwotwo | 个人博客</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#blog-title">跳到文章列表</a>
+
+    <header class="site-header">
+      <a class="brand" href="#/" aria-label="222twotwotwo 首页">
+        <img src="./assets/images/avatar.png" alt="222twotwotwo 头像" />
+        <span>222twotwotwo</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#/">文章</a>
+        <a href="#projects">项目</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="deck-shell" aria-label="博客文章">
+        <aside class="desk-panel" aria-label="文章筛选">
+          <div class="desk-panel-head">
+            <span>本地文章索引</span>
+            <small>Markdown</small>
+          </div>
+
+          <label for="searchInput">搜索</label>
+          <input id="searchInput" type="search" placeholder="Go、RPC、MCP..." autocomplete="off" />
+
+          <div class="filter-group">
+            <span>标签</span>
+            <div id="tagFilters" class="tag-filters"></div>
+          </div>
+
+          <div class="directory-map">
+            <span>目录</span>
+            <code>assets/paper</code>
+            <code>assets/images</code>
+            <code>assets/vedios</code>
+          </div>
+        </aside>
+
+        <section class="paper-section" aria-labelledby="blog-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">最新工程笔记</p>
+              <h2 id="blog-title">文章</h2>
+            </div>
+            <span id="postCount" class="post-count"></span>
+          </div>
+
+          <p id="contentStatus" class="content-status" hidden></p>
+          <div id="postList" class="post-list" aria-live="polite"></div>
+          <article id="postView" class="post-view" hidden></article>
+        </section>
+      </section>
+
+      <section id="projects" class="projects-section" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">精选开源路径</p>
+            <h2 id="projects-title">项目</h2>
+          </div>
+        </div>
+        <div class="project-grid">
+          <a class="project-card" href="https://github.com/222twotwotwo/incubator-seata-go">
+            <span>Go</span>
+            <strong>incubator-seata-go</strong>
+            <p>Apache Seata 的 Go 实现相关学习与贡献关注。</p>
+          </a>
+          <a class="project-card" href="https://github.com/222twotwotwo/dubbo-go-pixiu">
+            <span>Go</span>
+            <strong>dubbo-go-pixiu</strong>
+            <p>基于 dubbo-go 的代理网关服务，关注 HTTP / gRPC / Dubbo 接入。</p>
+          </a>
+          <a class="project-card" href="https://github.com/222twotwotwo/dubbo-go">
+            <span>Go</span>
+            <strong>dubbo-go</strong>
+            <p>Apache Dubbo Go 实现，关注 RPC 框架与服务治理。</p>
+          </a>
+          <a class="project-card" href="https://github.com/222twotwotwo/codegraph">
+            <span>TypeScript</span>
+            <strong>codegraph</strong>
+            <p>面向 AI 编程工具的本地代码知识图谱。</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <div>
+        <strong>联系方式</strong>
+        <p>欢迎交流 Go、微服务、AI 工程化和开源项目。</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:3379571673@qq.com">3379571673@qq.com</a>
+        <a href="https://github.com/222twotwotwo">GitHub</a>
+      </div>
+    </footer>
+
+    <script src="./assets/main.js"></script>
+  </body>
+</html>
