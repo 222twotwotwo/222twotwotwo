@@ -1,6 +1,8 @@
 (function () {
   const CONTENT_INDEX = "./content-index.json";
   const PAPER_INDEX = "./assets/paper/index.json";
+  const isPostPage = document.body.dataset.page === "post";
+  const siteTitle = "222twotwotwo";
   const state = {
     activeTag: "全部",
     posts: [],
@@ -15,6 +17,34 @@
     searchInput: document.querySelector("#searchInput"),
     status: document.querySelector("#contentStatus")
   };
+
+  function postHref(slug) {
+    return `./post.html?slug=${encodeURIComponent(slug)}`;
+  }
+
+  function legacyHashSlug() {
+    const match = window.location.hash.match(/^#\/post\/(.+)$/);
+    return match ? decodeURIComponent(match[1]) : "";
+  }
+
+  function redirectLegacyHashRoute() {
+    const slug = legacyHashSlug();
+    if (!slug) {
+      return false;
+    }
+
+    window.location.replace(postHref(slug));
+    return true;
+  }
+
+  if (!isPostPage && redirectLegacyHashRoute()) {
+    return;
+  }
+
+  function currentPostSlug() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("slug") || params.get("post") || legacyHashSlug();
+  }
 
   function basename(path) {
     return path.split("/").pop().replace(/\.md$/i, "");
@@ -297,7 +327,7 @@
   }
 
   function filteredPosts() {
-    const query = els.searchInput.value || "";
+    const query = els.searchInput ? els.searchInput.value || "" : "";
     return state.posts.filter((post) => {
       const tagMatch = state.activeTag === "全部" || post.tags.includes(state.activeTag);
       return tagMatch && matchesQuery(post, query);
@@ -312,6 +342,8 @@
   }
 
   function renderTagFilters() {
+    if (!els.tagFilters) return;
+
     els.tagFilters.innerHTML = "";
     uniqueTags().forEach((tag) => {
       const button = document.createElement("button");
@@ -328,11 +360,17 @@
   }
 
   function renderPostList() {
+    if (!els.postList) return;
+
     const visiblePosts = filteredPosts();
-    els.postView.hidden = true;
+    if (els.postView) {
+      els.postView.hidden = true;
+    }
     els.postList.hidden = false;
     els.postList.innerHTML = "";
-    els.postCount.textContent = `${visiblePosts.length} 篇文章`;
+    if (els.postCount) {
+      els.postCount.textContent = `${visiblePosts.length} 篇文章`;
+    }
 
     if (!visiblePosts.length) {
       els.postList.innerHTML = `<p class="empty-state">没有找到匹配的文章。换一个关键词或标签试试。</p>`;
@@ -344,14 +382,14 @@
       card.className = "post-card";
       card.style.setProperty("--node-index", `"${String(index + 1).padStart(2, "0")}"`);
       card.innerHTML = `
-        <a class="post-hitbox" href="#/post/${post.slug}" aria-label="阅读《${escapeHtml(post.title)}》"></a>
+        <a class="post-hitbox" href="${postHref(post.slug)}" aria-label="阅读《${escapeHtml(post.title)}》"></a>
         <div class="post-card-main">
           <div class="post-meta">
             <span>${escapeHtml(post.category)}</span>
             <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
             <span>${escapeHtml(post.readTime)}</span>
           </div>
-          <h3><a href="#/post/${post.slug}">${escapeHtml(post.title)}</a></h3>
+          <h3><a href="${postHref(post.slug)}">${escapeHtml(post.title)}</a></h3>
           <p>${escapeHtml(post.summary)}</p>
           <div class="post-tags">
             ${post.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
@@ -363,18 +401,49 @@
     });
   }
 
+  function renderPostNotFound(slug) {
+    if (els.postCount) {
+      els.postCount.textContent = "未找到";
+    }
+    if (!els.postView) return;
+
+    document.title = `文章未找到 | ${siteTitle}`;
+    els.postView.hidden = false;
+    els.postView.innerHTML = `
+      <a class="back-link" href="./">返回文章列表</a>
+      <div class="article-shell empty-article">
+        <header class="article-header">
+          <p class="eyebrow">文章未找到</p>
+          <h1>没有找到这篇文章</h1>
+          <p class="post-lead">${
+            slug
+              ? `当前链接中的 slug 是 “${escapeHtml(slug)}”，请回到文章列表重新打开。`
+              : "当前链接没有带文章 slug，请回到文章列表重新打开。"
+          }</p>
+        </header>
+      </div>
+    `;
+  }
+
   function renderPost(slug) {
     const post = state.posts.find((item) => item.slug === slug);
     if (!post) {
-      window.location.hash = "#/";
+      renderPostNotFound(slug);
       return;
     }
 
-    els.postList.hidden = true;
+    if (els.postList) {
+      els.postList.hidden = true;
+    }
+    if (!els.postView) return;
+
     els.postView.hidden = false;
-    els.postCount.textContent = "阅读中";
+    if (els.postCount) {
+      els.postCount.textContent = "阅读中";
+    }
+    document.title = `${post.title} | ${siteTitle}`;
     els.postView.innerHTML = `
-      <a class="back-link" href="#/">返回文章列表</a>
+      <a class="back-link" href="./">返回文章列表</a>
       <div class="article-shell">
         <header class="article-header">
           <div class="post-meta">
@@ -395,14 +464,9 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function handleRoute() {
+  function renderCurrentPostPage() {
     if (!state.ready) return;
-    const match = window.location.hash.match(/^#\/post\/(.+)$/);
-    if (match) {
-      renderPost(decodeURIComponent(match[1]));
-    } else {
-      renderPostList();
-    }
+    renderPost(currentPostSlug());
   }
 
   async function loadFromContentIndex() {
@@ -444,25 +508,41 @@
     state.posts = loaded.sort((a, b) => String(b.date).localeCompare(String(a.date)));
     state.ready = true;
     setStatus("", "");
-    renderTagFilters();
-    handleRoute();
+    if (isPostPage) {
+      renderCurrentPostPage();
+    } else {
+      renderTagFilters();
+      renderPostList();
+    }
   }
 
-  els.searchInput.addEventListener("input", () => {
-    if (window.location.hash !== "#/") {
-      window.location.hash = "#/";
+  if (els.searchInput) {
+    els.searchInput.addEventListener("input", () => {
+      if (redirectLegacyHashRoute()) return;
+
+      renderPostList();
+    });
+  }
+
+  window.addEventListener("hashchange", () => {
+    if (isPostPage) {
+      renderCurrentPostPage();
       return;
     }
+
+    if (redirectLegacyHashRoute()) return;
     renderPostList();
   });
-
-  window.addEventListener("hashchange", handleRoute);
 
   loadPosts().catch((error) => {
     console.error(error);
     state.ready = false;
-    els.postCount.textContent = "离线";
-    els.postList.innerHTML = "";
+    if (els.postCount) {
+      els.postCount.textContent = "离线";
+    }
+    if (els.postList) {
+      els.postList.innerHTML = "";
+    }
     setStatus(
       "文章加载失败。请通过本地静态服务器或 GitHub Pages 打开页面，而不是直接双击 file://。",
       "error"

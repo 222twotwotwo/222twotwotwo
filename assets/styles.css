@@ -212,8 +212,7 @@ main {
 }
 
 .desk-panel label,
-.filter-group > span,
-.directory-map > span {
+.filter-group > span {
   color: var(--ink);
   font-family: var(--mono-font);
   font-size: 12px;
@@ -261,23 +260,6 @@ main {
   border-color: var(--teal);
   background: #dcefed;
   color: var(--teal);
-}
-
-.directory-map {
-  display: grid;
-  gap: 8px;
-  border-top: 1px solid var(--line);
-  padding-top: 14px;
-}
-
-.directory-map code {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 8px 10px;
-  background: var(--paper-2);
-  color: var(--ink-2);
-  font-family: var(--mono-font);
-  font-size: 12px;
 }
 
 .paper-section {
@@ -455,6 +437,55 @@ main {
 .post-view {
   padding: 28px;
   box-shadow: none;
+}
+
+.post-page-main {
+  padding: 44px 0 64px;
+}
+
+body[data-page="post"] .content-status {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto 18px;
+}
+
+body[data-page="post"] .post-view {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+}
+
+body[data-page="post"] .back-link {
+  margin-bottom: 26px;
+}
+
+body[data-page="post"] .article-shell {
+  gap: 28px;
+  min-width: 0;
+}
+
+body[data-page="post"] .article-header {
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 22px;
+}
+
+body[data-page="post"] .article-header h1 {
+  max-width: none;
+  font-size: 56px;
+}
+
+body[data-page="post"] .post-body {
+  min-width: 0;
+  max-width: none;
+  overflow-wrap: anywhere;
+}
+
+.empty-article {
+  min-height: 42vh;
 }
 
 .article-shell {
@@ -750,6 +781,18 @@ main {
 
   .post-view {
     padding: 20px;
+  }
+
+  .post-page-main {
+    padding: 30px 0 52px;
+  }
+
+  body[data-page="post"] .post-view {
+    padding: 0;
+  }
+
+  body[data-page="post"] .article-header h1 {
+    font-size: 34px;
   }
 
   .article-header h1 {

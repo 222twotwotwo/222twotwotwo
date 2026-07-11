@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Lifecycle Scripts"
+  short_description: "Scan projects and generate start/stop scripts"
+  default_prompt: "Use $project-lifecycle-scripts to inspect this project and generate matching start and stop scripts."
