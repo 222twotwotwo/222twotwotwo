@@ -1,6 +1,31 @@
 {
   "posts": [
     {
+      "name": "session-context-exporter-skill.md",
+      "path": "assets/paper/session-context-exporter-skill.md",
+      "sourcePath": "./assets/paper/session-context-exporter-skill.md",
+      "slug": "session-context-exporter-skill",
+      "type": "file",
+      "title": "会话上下文导出 Skill：把一次协作变成下一次可继续的起点",
+      "description": "这个 Skill 会把当前 Codex 会话整理成 Markdown 交接文件，让下一次对话可以直接读取目标、状态、文件、验证结果和下一步。",
+      "summary": "这个 Skill 会把当前 Codex 会话整理成 Markdown 交接文件，让下一次对话可以直接读取目标、状态、文件、验证结果和下一步。",
+      "date": "2026-07-12",
+      "category": "Codex Skill",
+      "tags": [
+        "我的skill",
+        "Codex",
+        "上下文",
+        "自动化"
+      ],
+      "readTime": "5 分钟阅读",
+      "readingTime": 5,
+      "excerpt": "这个 Skill 会把当前 Codex 会话整理成 Markdown 交接文件，让下一次对话可以直接读取目标、状态、文件、验证结果和下一步。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false,
+      "markdown": "---\ntitle: 会话上下文导出 Skill：把一次协作变成下一次可继续的起点\ndate: 2026-07-12\ncategory: Codex Skill\ntags: 我的skill, Codex, 上下文, 自动化\nreadTime: 5 分钟阅读\nsummary: 这个 Skill 会把当前 Codex 会话整理成 Markdown 交接文件，让下一次对话可以直接读取目标、状态、文件、验证结果和下一步。\ncover: ../images/avatar.png\n---\n\n我最近做了一个名为 `session-context-exporter` 的 Codex Skill。它解决的是一个非常日常的问题：一次任务做了一半，或者已经做完但还想沉淀过程，下次对话怎样快速接上上下文。\n\n很多时候，真正重要的不是完整聊天记录，而是任务交接需要的那几类信息：目标是什么，已经完成到哪里，改过哪些文件，跑过哪些验证，还有下一步应该从哪里开始。这个 Skill 就是把这些内容整理成一个 Markdown 文件，让它可以被下一次 Codex 对话直接读取。\n\n## 它做什么\n\n这个 Skill 会生成一个面向继续工作的 handoff 文件，而不是简单保存原始 transcript。默认导出的内容包括：\n\n- 当前目标和最新请求。\n- 任务状态和已经完成的工作。\n- 关键决策、约束和偏好。\n- 相关文件、目录、产物、链接或命令。\n- 已经执行过的测试、构建或验证结果。\n- 仍然存在的问题、风险和下一步。\n- 一段可以在下一次对话中直接使用的启动提示。\n\n默认情况下，它把文件写到当前工作区的 `context-handoffs/` 目录。这样做的原因很简单：上下文交接文件通常属于当前项目的工作记录，放在项目里更容易被下一次任务找到。\n\n## 为什么不是原始聊天记录\n\n原始聊天记录看起来完整，但真正继续任务时反而不一定高效。下一次对话最需要的是可执行信息，而不是把每一次探索都重新读一遍。\n\n所以这个 Skill 的取舍是保留“能帮助继续工作”的内容：\n\n- 哪些结论已经确认。\n- 哪些路径应该优先查看。\n- 哪些命令已经跑过，结果如何。\n- 哪些事实可能会漂移，需要重新验证。\n- 用户最新的要求是否覆盖了旧计划。\n\n这让交接文件更像工程笔记，而不是聊天备份。\n\n## 脚本怎么用\n\nSkill 里包含一个脚本：\n\n```powershell\npython .\\skills\\session-context-exporter\\scripts\\export_context_md.py --json payload.json --output context-handoffs\n```\n\n`payload.json` 可以传入标题、工作区、目标、状态、章节和下一次提示。例如：\n\n```json\n{\n  \"title\": \"Session Context Handoff\",\n  \"workspace\": \"C:/path/to/workspace\",\n  \"objective\": \"Continue a partially completed task.\",\n  \"status\": \"Implementation is done, verification remains.\",\n  \"sections\": [\n    {\n      \"heading\": \"Files And Artifacts\",\n      \"items\": [\"C:/path/to/file.md - article draft\"]\n    },\n    {\n      \"heading\": \"Next Steps\",\n      \"body\": \"Run the focused tests and publish the final changes.\"\n    }\n  ],\n  \"next_prompt\": \"Read this Markdown context file first, then continue from Next Steps.\"\n}\n```\n\n如果 `--output` 是目录，脚本会自动生成带时间戳的 `.md` 文件。如果 `--output` 直接指向某个 `.md` 文件，它就会覆盖写入那个文件。\n\n## 复用时的规则\n\n下一次对话使用这个上下文文件时，最重要的是先读文件，再继续工作。但这个文件也不是绝对真相。\n\n例如分支、远端状态、依赖版本、服务端口、CI 结果、网页部署状态，都可能在导出之后发生变化。Skill 的说明里明确要求 Codex 对这些容易漂移的信息重新验证，再继续执行。\n\n这能避免一个常见问题：拿着旧上下文继续做事，却忘了现实环境已经变了。\n\n## 为什么要放进项目\n\n这次我把 `session-context-exporter` 同步到了本站仓库的 `skills/session-context-exporter` 目录。这样它不只是安装在本机 Codex 里，也成为这个项目的一部分。\n\n对我来说，这类 Skill 的意义是把个人工作流沉淀下来：每次任务结束时，不只是“做完了”，还可以留下一个足够清晰的继续入口。下一次再打开项目时，不需要从零回忆发生过什么，只要读取 Markdown handoff，就能接着往前走。\n\n后续可以继续扩展它，比如加入更固定的文件命名规则、生成更详细的命令日志，或者把多个 handoff 合并成项目级工作记录。但目前这个版本已经覆盖了最核心的一步：把一次协作变成下一次可继续的起点。\n"
+    },
+    {
       "name": "project-lifecycle-scripts-skill.md",
       "path": "assets/paper/project-lifecycle-scripts-skill.md",
       "sourcePath": "./assets/paper/project-lifecycle-scripts-skill.md",
@@ -98,6 +123,30 @@
     }
   ],
   "tree": [
+    {
+      "name": "session-context-exporter-skill.md",
+      "path": "assets/paper/session-context-exporter-skill.md",
+      "sourcePath": "./assets/paper/session-context-exporter-skill.md",
+      "slug": "session-context-exporter-skill",
+      "type": "file",
+      "title": "会话上下文导出 Skill：把一次协作变成下一次可继续的起点",
+      "description": "这个 Skill 会把当前 Codex 会话整理成 Markdown 交接文件，让下一次对话可以直接读取目标、状态、文件、验证结果和下一步。",
+      "summary": "这个 Skill 会把当前 Codex 会话整理成 Markdown 交接文件，让下一次对话可以直接读取目标、状态、文件、验证结果和下一步。",
+      "date": "2026-07-12",
+      "category": "Codex Skill",
+      "tags": [
+        "我的skill",
+        "Codex",
+        "上下文",
+        "自动化"
+      ],
+      "readTime": "5 分钟阅读",
+      "readingTime": 5,
+      "excerpt": "这个 Skill 会把当前 Codex 会话整理成 Markdown 交接文件，让下一次对话可以直接读取目标、状态、文件、验证结果和下一步。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false
+    },
     {
       "name": "project-lifecycle-scripts-skill.md",
       "path": "assets/paper/project-lifecycle-scripts-skill.md",

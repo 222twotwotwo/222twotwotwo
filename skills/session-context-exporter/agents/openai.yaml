@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Context Exporter"
+  short_description: "Export reusable task context as Markdown"
+  default_prompt: "Use $session-context-exporter to export the current task context into a Markdown handoff file."
