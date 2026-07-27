@@ -14,7 +14,7 @@ function parseFrontMatter(markdown) {
 
   const meta = {};
   match[1].split(/\r?\n/).forEach((line) => {
-    const pair = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
+    const pair = line.trim().match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
     if (!pair) return;
     const key = pair[1];
     const value = pair[2].trim();
@@ -25,6 +25,10 @@ function parseFrontMatter(markdown) {
     body: markdown.slice(match[0].length),
     meta
   };
+}
+
+function normalizeLineEndings(markdown) {
+  return markdown.replace(/\r+\n/g, "\n").replace(/\r/g, "\n");
 }
 
 function slugFromFile(file) {
@@ -49,7 +53,7 @@ function makeExcerpt(body, fallback) {
 
 const files = JSON.parse(fs.readFileSync(paperIndexPath, "utf8"));
 const posts = files.map((file) => {
-  const markdown = fs.readFileSync(path.join(paperDir, file), "utf8");
+  const markdown = normalizeLineEndings(fs.readFileSync(path.join(paperDir, file), "utf8"));
   const parsed = parseFrontMatter(markdown);
   const meta = parsed.meta;
   const readingTime = Number.parseInt(meta.readTime, 10) || estimateReadingTime(parsed.body);

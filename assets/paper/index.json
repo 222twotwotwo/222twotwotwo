@@ -1,4 +1,5 @@
 [
+  "wsl-proxy-mtu-troubleshooting.md",
   "go-zero-getting-started.md",
   "session-context-exporter-skill.md",
   "project-lifecycle-scripts-skill.md",
