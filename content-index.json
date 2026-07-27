@@ -1,6 +1,31 @@
 {
   "posts": [
     {
+      "name": "go-zero-getting-started.md",
+      "path": "assets/paper/go-zero-getting-started.md",
+      "sourcePath": "./assets/paper/go-zero-getting-started.md",
+      "slug": "go-zero-getting-started",
+      "type": "file",
+      "title": "go-zero 入门：从安装 goctl 到生成 API 与 Model",
+      "description": "从安装 goctl、创建 go-zero HTTP 服务、编写 API 描述文件，到生成 handler、logic、routes 和数据库 model 的一套入门流程。",
+      "summary": "从安装 goctl、创建 go-zero HTTP 服务、编写 API 描述文件，到生成 handler、logic、routes 和数据库 model 的一套入门流程。",
+      "date": "2026-07-27",
+      "category": "Go 后端",
+      "tags": [
+        "Go",
+        "go-zero",
+        "goctl",
+        "微服务"
+      ],
+      "readTime": "7 分钟阅读",
+      "readingTime": 7,
+      "excerpt": "从安装 goctl、创建 go-zero HTTP 服务、编写 API 描述文件，到生成 handler、logic、routes 和数据库 model 的一套入门流程。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false,
+      "markdown": "---\ntitle: go-zero 入门：从安装 goctl 到生成 API 与 Model\ndate: 2026-07-27\ncategory: Go 后端\ntags: Go, go-zero, goctl, 微服务\nreadTime: 7 分钟阅读\nsummary: 从安装 goctl、创建 go-zero HTTP 服务、编写 API 描述文件，到生成 handler、logic、routes 和数据库 model 的一套入门流程。\ncover: ../images/avatar.png\n---\n\ngo-zero 是一个同时覆盖 Web 和 RPC 场景的 Go 框架，比较适合用来快速搭建服务端项目。它的重点不只是路由和请求处理，还包含了代码生成、配置、日志、限流、熔断、缓存等工程化能力。\n\n对刚开始上手的人来说，go-zero 最值得先理解的是两件事：\n\n- 使用 api 描述语言定义 HTTP 接口。\n- 使用 goctl 根据 api、DDL 或数据库连接生成项目骨架和基础代码。\n\n下面以 goctl v1.6.4 的命令为例，串起一个从安装到生成代码的最小流程。\n\n## 安装 goctl\n\ngoctl 是 go-zero 的代码生成工具。先安装指定版本：\n\n```bash\ngo install github.com/zeromicro/go-zero/tools/goctl@v1.6.4\n```\n\n安装完成后确认版本：\n\n```bash\ngoctl --version\n```\n\n如果命令找不到，通常需要检查 Go 的 `GOBIN` 或 `GOPATH/bin` 是否已经加入系统 `PATH`。\n\n## 创建 go-zero 项目\n\n先进入准备放项目的目录，然后初始化 Go module，并用 goctl 创建 API 服务骨架：\n\n```bash\nmkdir gozero-demo\ncd gozero-demo\n\ngo mod init gozero\ngoctl api new gozero\ncd gozero\ngo mod tidy\n```\n\n执行完成后，goctl 会生成一个基础 HTTP 服务结构，常见目录包括：\n\n- `etc/`：服务配置文件。\n- `internal/config/`：配置结构体。\n- `internal/handler/`：HTTP handler 和路由注册。\n- `internal/logic/`：业务逻辑层。\n- `internal/svc/`：服务上下文和依赖注入位置。\n- `internal/types/`：请求和响应结构体。\n- `gozero.api`：API 描述文件。\n- `gozero.go`：服务入口。\n\n## 启动 HTTP 服务\n\n在生成出来的服务目录里启动项目：\n\n```bash\ngo run gozero.go -f etc/gozero-api.yaml\n```\n\n默认配置会监听 `8888` 端口，可以在浏览器访问：\n\n```text\nhttp://127.0.0.1:8888/from/me\n```\n\n默认生成的接口逻辑里通常还没有实际返回值，可以在 `gozero/internal/logic/gozerologic.go` 中补一个最小响应：\n\n```go\nfunc (l *GozeroLogic) Gozero(req *types.Request) (resp *types.Response, err error) {\n    return &types.Response{\n        Message: \"Hello \" + req.Name,\n    }, nil\n}\n```\n\n对应路由在 `gozero/internal/handler/routes.go` 中注册，默认路径类似：\n\n```text\n/from/:name\n```\n\n重新启动服务后访问 `/from/me`，如果返回了 `Hello me`，说明最小 HTTP 服务已经跑通。\n\n## 理解 API 描述语言\n\ngo-zero 的 api 文件是一种面向 HTTP 接口的领域描述语言。它通常由这几部分组成：\n\n- `syntax`：语法版本。\n- `info`：接口文档元信息。\n- `type`：请求、响应和业务数据结构。\n- `service`：服务名、路由、handler 和方法定义。\n- `@server`、`@doc` 等注解：用于声明分组、前缀、鉴权、说明等信息。\n\n它的结构体声明和 Go 结构体很像，只是去掉了 `struct` 关键字。写好 api 文件后，goctl 可以据此生成 types、handler、logic 和 routes 等基础代码。\n\n## 定义结构体 API\n\n在 `gozero/gozero.api` 中引入一个自定义 api 文件：\n\n```api\nimport (\n    \"./api/user.api\"\n)\n```\n\n然后创建 `api/user.api`：\n\n```api\nsyntax = \"v1\"\n\ninfo (\n    title:   \"用户相关业务\"\n    desc:    \"用户的增删改查\"\n    author:  \"renxing\"\n    email:   \"renxing@xxx.com\"\n    version: \"1.0\"\n)\n\ntype UserDetailRequest {\n    Id   int32  `json:\"id\"`\n    Name string `json:\"name,optional\"`\n}\n\ntype UserDetailResponse {\n    Code int64          `json:\"code\"`\n    Msg  string         `json:\"msg\"`\n    Data UserDetailData `json:\"data\"`\n}\n\ntype UserDetailData {\n    Id   int32  `json:\"id\"`\n    Name string `json:\"name\"`\n}\n```\n\n如果使用 GoLand，可以把 `.api` 文件类型覆盖为 API，这样编辑器会更容易识别语法和高亮。\n\n## 定义路由 API\n\n默认生成的 `gozero.api` 里会有一个类似这样的服务定义：\n\n```api\nservice gozero-api {\n    @handler GozeroHandler\n    get /from/:name (Request) returns (Response)\n}\n```\n\n现在增加一个查询用户详情的接口，使用 `/admin` 作为统一前缀：\n\n```api\n@server (\n    prefix: /admin\n    group:  admin\n)\nservice gozero-api {\n    @doc (\n        summary: \"用户详细信息\"\n    )\n    @handler UserDetail\n    post /user/detail (UserDetailRequest) returns (UserDetailResponse)\n}\n```\n\n这样最终暴露出来的接口路径就是：\n\n```text\nPOST /admin/user/detail\n```\n\n## 格式化 API 文件\n\napi 文件写多了之后，字段缩进和注解顺序容易变乱。提交前可以用 goctl 统一格式化：\n\n```bash\ngoctl api format --dir .\n```\n\n如果只想处理单个 api 文件所在目录，也可以把 `--dir` 指到对应目录。\n\n## 生成基础逻辑代码\n\n根据 api 文件生成 handler、logic、routes 和 types：\n\n```bash\ngoctl api go -api gozero.api -dir .\n```\n\n生成完成后，`gozero/internal/handler/routes.go` 会自动增加路由注册，结构大致如下：\n\n```go\nserver.AddRoutes(\n    []rest.Route{\n        {\n            // 用户详细信息\n            Method:  http.MethodPost,\n            Path:    \"/user/detail\",\n            Handler: admin.UserDetailHandler(serverCtx),\n        },\n    },\n    rest.WithPrefix(\"/admin\"),\n)\n```\n\n同时，goctl 会生成 handler 文件，例如 `gozero/internal/handler/admin/userdetailhandler.go`：\n\n```go\n// 用户详细信息\nfunc UserDetailHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {\n    return func(w http.ResponseWriter, r *http.Request) {\n        var req types.UserDetailRequest\n        if err := httpx.Parse(r, &req); err != nil {\n            httpx.ErrorCtx(r.Context(), w, err)\n            return\n        }\n\n        l := admin.NewUserDetailLogic(r.Context(), svcCtx)\n        resp, err := l.UserDetail(&req)\n        if err != nil {\n            httpx.ErrorCtx(r.Context(), w, err)\n        } else {\n            httpx.OkJsonCtx(r.Context(), w, resp)\n        }\n    }\n}\n```\n\n业务逻辑文件会生成在 `gozero/internal/logic/admin/userdetaillogic.go`：\n\n```go\ntype UserDetailLogic struct {\n    logx.Logger\n    ctx    context.Context\n    svcCtx *svc.ServiceContext\n}\n\n// 用户详细信息\nfunc NewUserDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserDetailLogic {\n    return &UserDetailLogic{\n        Logger: logx.WithContext(ctx),\n        ctx:    ctx,\n        svcCtx: svcCtx,\n    }\n}\n\nfunc (l *UserDetailLogic) UserDetail(req *types.UserDetailRequest) (resp *types.UserDetailResponse, err error) {\n    return\n}\n```\n\n日常开发时，通常只需要在 logic 层补业务逻辑；handler、路由和 types 继续由 api 文件驱动生成。\n\n## 生成数据库 Model\n\ngoctl 也可以生成数据库 model 代码，支持从 SQL DDL 或数据库连接生成。\n\n通过 DDL 文件生成：\n\n```bash\ngoctl model mysql ddl -src=\"./sql/user.sql\" -dir=\"./goctl_model\" -c=true\n```\n\n通过 datasource 生成：\n\n```bash\ngoctl model mysql datasource \\\n  -url=\"user:password@tcp(127.0.0.1:3306)/database\" \\\n  -table=\"user,goods,order\" \\\n  -dir=\"./goctl_model\"\n```\n\n如果要生成全部表，可以把 `-table` 写成：\n\n```bash\n-table=\"*\"\n```\n\ngoctl 生成的 model 会包含表结构对应的 Go 类型、基础 CRUD 方法，以及可选的缓存逻辑。它更适合希望通过代码生成固定数据访问层形态的项目；如果团队已经以 GORM 作为主要数据库访问方式，也可以只把这一部分作为了解。\n\n## 小结\n\ngo-zero 的入门路径可以概括成一条主线：\n\n- 用 `goctl api new` 生成最小 HTTP 服务。\n- 在 `.api` 文件里定义请求、响应和路由。\n- 用 `goctl api format` 保持 api 文件整洁。\n- 用 `goctl api go` 生成 handler、logic、routes 和 types。\n- 需要数据访问层时，再用 `goctl model mysql` 根据 DDL 或数据源生成 model。\n\n真正的业务代码建议尽量收敛到 logic 层；接口协议、路由和类型则交给 api 文件统一描述。这样项目规模变大之后，代码生成和人工业务逻辑之间的边界会更清楚，后续维护也更省力。\n\n## 参考\n\n- [go-zero Documentation](https://go-zero.dev/)\n- [goctl API](https://go-zero.dev/reference/cli-guide/api/)\n- [goctl Model](https://go-zero.dev/reference/cli-guide/model/)\n- [MySQL 数据库操作](https://go-zero.dev/zh-cn/guides/database/mysql/)\n- [示例源代码](https://gitee.com/rxbook/go-demo-2025)\n"
+    },
+    {
       "name": "session-context-exporter-skill.md",
       "path": "assets/paper/session-context-exporter-skill.md",
       "sourcePath": "./assets/paper/session-context-exporter-skill.md",
@@ -123,6 +148,30 @@
     }
   ],
   "tree": [
+    {
+      "name": "go-zero-getting-started.md",
+      "path": "assets/paper/go-zero-getting-started.md",
+      "sourcePath": "./assets/paper/go-zero-getting-started.md",
+      "slug": "go-zero-getting-started",
+      "type": "file",
+      "title": "go-zero 入门：从安装 goctl 到生成 API 与 Model",
+      "description": "从安装 goctl、创建 go-zero HTTP 服务、编写 API 描述文件，到生成 handler、logic、routes 和数据库 model 的一套入门流程。",
+      "summary": "从安装 goctl、创建 go-zero HTTP 服务、编写 API 描述文件，到生成 handler、logic、routes 和数据库 model 的一套入门流程。",
+      "date": "2026-07-27",
+      "category": "Go 后端",
+      "tags": [
+        "Go",
+        "go-zero",
+        "goctl",
+        "微服务"
+      ],
+      "readTime": "7 分钟阅读",
+      "readingTime": 7,
+      "excerpt": "从安装 goctl、创建 go-zero HTTP 服务、编写 API 描述文件，到生成 handler、logic、routes 和数据库 model 的一套入门流程。",
+      "cover": "../images/avatar.png",
+      "contentType": "post",
+      "hidden": false
+    },
     {
       "name": "session-context-exporter-skill.md",
       "path": "assets/paper/session-context-exporter-skill.md",
