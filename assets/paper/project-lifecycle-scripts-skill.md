@@ -5,7 +5,7 @@ category: Codex Skill
 tags: 我的skill, Codex, 自动化
 readTime: 5 分钟阅读
 summary: 这个 Skill 会先总览项目，再根据当前系统生成匹配的启动和停止脚本，把临时摸索沉淀成可重复执行的项目生命周期入口。
-cover: ../images/avatar.png
+cover: ../images/logos/openai-logo.svg
 ---
 
 我最近做了一个名为 `project-lifecycle-scripts` 的 Codex Skill。它解决的是一个很常见但容易被忽略的问题：每接手一个项目，都要重新判断怎么启动、怎么停止、脚本应该写成 PowerShell 还是 shell。

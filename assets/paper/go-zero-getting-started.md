@@ -5,7 +5,7 @@ category: Go 后端
 tags: Go, go-zero, goctl, 微服务
 readTime: 7 分钟阅读
 summary: 从安装 goctl、创建 go-zero HTTP 服务、编写 API 描述文件，到生成 handler、logic、routes 和数据库 model 的一套入门流程。
-cover: ../images/avatar.png
+cover: ../images/logos/go-zero-logo.webp
 ---
 
 go-zero 是一个同时覆盖 Web 和 RPC 场景的 Go 框架，比较适合用来快速搭建服务端项目。它的重点不只是路由和请求处理，还包含了代码生成、配置、日志、限流、熔断、缓存等工程化能力。

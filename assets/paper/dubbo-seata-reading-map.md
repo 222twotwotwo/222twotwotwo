@@ -5,7 +5,7 @@ category: 开源阅读
 tags: Dubbo, Seata, RPC
 readTime: 4 分钟阅读
 summary: 阅读大型开源项目时，我会先找启动链路、配置入口、核心接口和测试样例，再向具体实现下钻。
-cover: ../images/avatar.png
+cover: ../images/logos/dubbo-seata-cover.png
 ---
 
 Dubbo 和 Seata 都不是只靠单个模块就能理解的项目。更稳的方式是先画出运行链路，再把每个关键节点拆开阅读。

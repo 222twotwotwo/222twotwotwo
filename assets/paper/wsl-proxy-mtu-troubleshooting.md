@@ -5,7 +5,7 @@ category: 网络排障
 tags: WSL, 代理, MTU, Git, HTTPS
 readTime: 4 分钟阅读
 summary: 记录一次 WSL 代理网络中因为虚拟网卡 MTU 异常导致 HTTPS 请求、CLI 工具调用和 git clone 卡住的排查过程。
-cover: ../images/avatar.png
+cover: ../images/logos/git-icon.svg
 ---
 
 最近在 WSL 里遇到一个比较隐蔽的网络问题：界面和命令行工具本身都能正常启动，但一旦发起需要访问外部 HTTPS 服务的请求，就会长时间停住。

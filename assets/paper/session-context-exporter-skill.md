@@ -5,7 +5,7 @@ category: Codex Skill
 tags: 我的skill, Codex, 上下文, 自动化
 readTime: 5 分钟阅读
 summary: 这个 Skill 会把当前 Codex 会话整理成 Markdown 交接文件，让下一次对话可以直接读取目标、状态、文件、验证结果和下一步。
-cover: ../images/avatar.png
+cover: ../images/logos/openai-logo.svg
 ---
 
 我最近做了一个名为 `session-context-exporter` 的 Codex Skill。它解决的是一个非常日常的问题：一次任务做了一半，或者已经做完但还想沉淀过程，下次对话怎样快速接上上下文。

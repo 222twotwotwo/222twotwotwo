@@ -5,7 +5,7 @@ category: Go 后端
 tags: Go, 后端, 测试
 readTime: 5 分钟阅读
 summary: 把 Go 项目从 demo 推向长期维护时，目录边界、测试策略、错误语义和可观测性会比单个技巧更重要。
-cover: ../images/avatar.png
+cover: ../images/logos/go-logo.svg
 ---
 
 我更喜欢把后端工程化理解成一组让代码长期保持可改的约束：模块边界清楚，接口语义稳定，测试覆盖关键行为，运行时问题能够被观察到。

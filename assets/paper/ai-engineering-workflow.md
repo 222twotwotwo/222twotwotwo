@@ -5,7 +5,7 @@ category: AI 工程
 tags: AI Agent, MCP, 工作流
 readTime: 6 分钟阅读
 summary: AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。
-cover: ../images/avatar.png
+cover: ../images/logos/mcp-logo.svg
 ---
 
 我把 AI 辅助开发当作一个工程协作者，而不是魔法按钮。它擅长快速阅读、生成候选方案、批量修改和验证，但方向、取舍和最终判断仍然要回到工程目标。
