@@ -5,6 +5,7 @@ category: 工具折腾
 tags: Windows, iPad, Sunshine, Moonlight, 副屏
 readTime: 8 分钟阅读
 summary: 用 Sunshine、Moonlight，配合虚拟显示器驱动或 HDMI 欺骗头，把 iPad 变成 Windows 的无线扩展屏，并记录新版 Sunshine 下容易踩坑的 display device id 配置。
+cover: ../images/logos/sunshine-moonlight-cover.svg
 ---
 
 把 iPad 当作 Windows 副屏，核心并不是“把屏幕投到 iPad 上”这么简单。真正要实现扩展屏，需要让 Windows 先看到一块额外的显示器，然后再把这块显示器的画面串流到 iPad。

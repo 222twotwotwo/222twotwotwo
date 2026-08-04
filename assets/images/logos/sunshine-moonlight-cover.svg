@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 960 540" width="960" height="540">
+  <rect width="960" height="540" fill="#ffffff"/>
+  <image href="sunshine-logo.png" xlink:href="sunshine-logo.png" x="420" y="108" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>
+  <image href="moonlight-logo.svg" xlink:href="moonlight-logo.svg" x="345" y="252" width="270" height="270" preserveAspectRatio="xMidYMid meet"/>
+</svg>
