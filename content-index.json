@@ -1,6 +1,31 @@
 {
   "posts": [
     {
+      "name": "go-shadowing-and-int-width.md",
+      "path": "assets/paper/go-shadowing-and-int-width.md",
+      "sourcePath": "./assets/paper/go-shadowing-and-int-width.md",
+      "slug": "go-shadowing-and-int-width",
+      "type": "file",
+      "title": "变量遮蔽与 32 位 int 的常见问题",
+      "description": "梳理 Go 里的变量遮蔽和 32 位 int 溢出问题：它们都可能影响长度、计数和状态，但成因与修复方式并不相同。",
+      "summary": "梳理 Go 里的变量遮蔽和 32 位 int 溢出问题：它们都可能影响长度、计数和状态，但成因与修复方式并不相同。",
+      "date": "2026-08-04",
+      "category": "Go 后端",
+      "tags": [
+        "Go",
+        "变量遮蔽",
+        "int",
+        "整数溢出"
+      ],
+      "readTime": "4 分钟阅读",
+      "readingTime": 4,
+      "excerpt": "梳理 Go 里的变量遮蔽和 32 位 int 溢出问题：它们都可能影响长度、计数和状态，但成因与修复方式并不相同。",
+      "cover": "../images/logos/go-logo.svg",
+      "contentType": "post",
+      "hidden": false,
+      "markdown": "---\ntitle: 变量遮蔽与 32 位 int 的常见问题\ndate: 2026-08-04\ncategory: Go 后端\ntags: Go, 变量遮蔽, int, 整数溢出\nreadTime: 4 分钟阅读\nsummary: 梳理 Go 里的变量遮蔽和 32 位 int 溢出问题：它们都可能影响长度、计数和状态，但成因与修复方式并不相同。\ncover: ../images/logos/go-logo.svg\n---\n\nGo 代码里有两个容易被混在一起讨论的问题：\n\n1. 变量遮蔽，也就是内层作用域重新声明了外层同名变量。\n2. `int` 的位宽依赖机器架构，在 32 位机器上可能导致整数溢出。\n\n它们都可能让长度、计数、状态这类变量出现异常，但成因并不一样。\n\n## 变量遮蔽是什么\n\n变量遮蔽指的是：外层作用域已经有一个变量，内层作用域又声明了一个同名变量。此时内层代码访问到的是新变量，外层变量被暂时遮住。\n\n例如：\n\n```go\nfunc normalize(limit int32) int {\n    if limit > 0 {\n        limit := int(limit)\n        return limit\n    }\n    return 0\n}\n```\n\n这段代码里，`if` 内部的：\n\n```go\nlimit := int(limit)\n```\n\n重新声明了一个新的 `limit`，它遮蔽了函数参数 `limit int32`。\n\n短声明 `:=` 本身不是问题，问题是短声明出来的新变量和外层变量同名。\n\n更清晰的写法是：\n\n```go\nfunc normalize(limit int32) int {\n    if limit > 0 {\n        normalizedLimit := int(limit)\n        return normalizedLimit\n    }\n    return 0\n}\n```\n\n## 变量遮蔽会带来什么后果\n\n变量遮蔽最常见的问题不是代码无法编译，而是代码能编译、能运行，但行为和读代码的人预期不同。\n\n### 1. 修改没有作用到外层变量\n\n```go\nfunc load() error {\n    var err error\n\n    if true {\n        err := doSomething()\n        if err != nil {\n            return err\n        }\n    }\n\n    return err\n}\n```\n\n内层的 `err := doSomething()` 声明了新的 `err`。外层 `err` 没有被赋值，后续如果依赖外层 `err`，就可能得到错误结果。\n\n如果目的是给外层变量赋值，应使用 `=`：\n\n```go\nerr = doSomething()\n```\n\n### 2. 状态变量看起来被更新，实际没有\n\n```go\nfunc count(items []string) int {\n    total := 0\n\n    for _, item := range items {\n        if item != \"\" {\n            total := total + 1\n            _ = total\n        }\n    }\n\n    return total\n}\n```\n\n循环内部的 `total := total + 1` 创建了新的 `total`，外层 `total` 始终是 `0`。\n\n正确写法是：\n\n```go\ntotal = total + 1\n```\n\n或者：\n\n```go\ntotal++\n```\n\n### 3. 类型转换让变量含义变得模糊\n\n类型转换时尤其容易写出遮蔽：\n\n```go\nfunc size(n int32) int {\n    if n > 0 {\n        n := int(n)\n        return n * 2\n    }\n    return 0\n}\n```\n\n这类写法会让 `n` 在不同作用域里代表不同类型。代码短的时候还能看懂，逻辑一复杂就容易误读。\n\n更推荐给转换后的变量取一个新名字：\n\n```go\nfunc size(n int32) int {\n    if n > 0 {\n        size := int(n)\n        return size * 2\n    }\n    return 0\n}\n```\n\n## 什么不是变量遮蔽\n\n不是所有短声明都是变量遮蔽。\n\n```go\nfunc bufferLen() int64 {\n    maxLen := int64(4096)\n    return maxLen\n}\n```\n\n这里的 `maxLen := ...` 是短声明，但不是遮蔽，因为外层没有同名的 `maxLen`。\n\n遮蔽要求同时满足两个条件：\n\n1. 外层作用域已经有同名变量。\n2. 内层作用域又声明了一个新的同名变量。\n\n## 32 位机器上的 int 问题\n\nGo 里的 `int` 不是固定 64 位。它的大小依赖目标架构：\n\n- 在 64 位架构上，`int` 通常是 64 位。\n- 在 32 位架构上，`int` 是 32 位。\n\n所以这段代码在不同架构上可能表现不同：\n\n```go\nfunc calc(n int32) int {\n    size := int(n)\n    return size + 4096\n}\n```\n\n如果 `n` 接近 `math.MaxInt32`，那么在 32 位机器上：\n\n```go\nsize + 4096\n```\n\n可能超过 32 位 `int` 的最大值，发生整数溢出。\n\n左移也有类似问题：\n\n```go\nfunc double(n int32) int {\n    size := int(n)\n    return size << 1\n}\n```\n\n在 32 位机器上，如果 `size` 足够大，`size << 1` 也可能溢出。\n\n## 为什么要显式使用 int64\n\n如果一个值本身来自 `int32`、协议字段、文件长度、网络包长度或外部配置，并且后续还要做加法、乘法、左移等运算，就不应该随手转成 `int` 后继续计算。\n\n更稳妥的方式是先转成固定宽度的整数：\n\n```go\nfunc calc(n int32) int64 {\n    size := int64(n)\n    return size + 4096\n}\n```\n\n这样中间计算不会受 32 位 `int` 限制。\n\n如果最后必须调用只接受 `int` 的 API，也应该在转换前做边界检查：\n\n```go\nfunc allocSize(n int32) (int, error) {\n    size := int64(n) + 4096\n    if size > int64(math.MaxInt) {\n        return 0, fmt.Errorf(\"size %d exceeds max int %d\", size, math.MaxInt)\n    }\n    return int(size), nil\n}\n```\n\n核心原则是：先用足够宽的类型完成计算，再在明确安全的地方转回 `int`。\n\n## 总结\n\n变量遮蔽和 32 位 `int` 溢出是两个不同的问题。\n\n变量遮蔽的问题在于，同名变量让内层代码操作了一个新变量，而不是预期中的外层变量。它会带来状态没有更新、错误没有传递、类型含义混乱等问题。\n\n32 位 `int` 的问题在于，`int` 的宽度不是固定的。代码在 64 位机器上正常，不代表在 32 位机器上也不会溢出。对于长度、容量、偏移量这类可能接近边界的值，中间计算应优先使用 `int64`，最后需要转成 `int` 时再做范围检查。\n"
+    },
+    {
       "name": "sunshine-moonlight-ipad-windows-extended-screen.md",
       "path": "assets/paper/sunshine-moonlight-ipad-windows-extended-screen.md",
       "sourcePath": "./assets/paper/sunshine-moonlight-ipad-windows-extended-screen.md",
@@ -226,6 +251,30 @@
     }
   ],
   "tree": [
+    {
+      "name": "go-shadowing-and-int-width.md",
+      "path": "assets/paper/go-shadowing-and-int-width.md",
+      "sourcePath": "./assets/paper/go-shadowing-and-int-width.md",
+      "slug": "go-shadowing-and-int-width",
+      "type": "file",
+      "title": "变量遮蔽与 32 位 int 的常见问题",
+      "description": "梳理 Go 里的变量遮蔽和 32 位 int 溢出问题：它们都可能影响长度、计数和状态，但成因与修复方式并不相同。",
+      "summary": "梳理 Go 里的变量遮蔽和 32 位 int 溢出问题：它们都可能影响长度、计数和状态，但成因与修复方式并不相同。",
+      "date": "2026-08-04",
+      "category": "Go 后端",
+      "tags": [
+        "Go",
+        "变量遮蔽",
+        "int",
+        "整数溢出"
+      ],
+      "readTime": "4 分钟阅读",
+      "readingTime": 4,
+      "excerpt": "梳理 Go 里的变量遮蔽和 32 位 int 溢出问题：它们都可能影响长度、计数和状态，但成因与修复方式并不相同。",
+      "cover": "../images/logos/go-logo.svg",
+      "contentType": "post",
+      "hidden": false
+    },
     {
       "name": "sunshine-moonlight-ipad-windows-extended-screen.md",
       "path": "assets/paper/sunshine-moonlight-ipad-windows-extended-screen.md",
