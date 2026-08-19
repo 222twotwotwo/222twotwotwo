@@ -1,0 +1,4 @@
+interface:
+  display_name: "First"
+  short_description: "Plan small review-gated steps"
+  default_prompt: "Use $first to run an SDD-style task loop with small, independently reviewable steps: spec first, then stop at the review gate after each step."
