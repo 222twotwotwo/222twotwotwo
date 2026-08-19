@@ -1,11 +1,14 @@
-# Hi, I'm 222twotwotwo
+<div align="center">
 
-[English](./README.md)
+<h1>Hi, I'm 222twotwotwo</h1>
 
-> 热爱 Go 后端、云原生微服务、开源协作与 AI 工程化工具。  
-> 目前主要关注 Apache Dubbo / Seata 生态、网关与 RPC、代码智能工具、MCP 以及个人效率系统。
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&duration=2600&pause=900&color=00ADD8&center=true&vCenter=true&width=760&lines=Go+Backend+Engineering;Microservices+%7C+RPC+%7C+Gateways;AI-assisted+Developer+Workflows" alt="Typing SVG" />
+</a>
 
-<p align="left">
+<p><a href="./README.md">English</a></p>
+
+<p>
   <a href="mailto:3379571673@qq.com">
     <img src="https://img.shields.io/badge/Email-3379571673%40qq.com-blue?style=flat-square&logo=gmail" alt="Email" />
   </a>
@@ -15,7 +18,10 @@
   <a href="https://222twotwotwo.github.io/222twotwotwo/">
     <img src="https://img.shields.io/badge/Blog-222twotwotwo.github.io-0B6E69?style=flat-square&logo=githubpages&logoColor=white" alt="Blog" />
   </a>
+  <img src="https://komarev.com/ghpvc/?username=222twotwotwo&style=flat-square&color=00ADD8" alt="Profile Views" />
 </p>
+
+</div>
 
 ## About Me
 
