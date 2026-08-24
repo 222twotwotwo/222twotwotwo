@@ -32,11 +32,11 @@
 
 ## Tech Stack
 
-<p align="left">
-  <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go" />
-  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white" alt="C++" />
-  <img src="https://img.shields.io/badge/Shell-4EAA25?style=flat-square&logo=gnubash&logoColor=white" alt="Shell" />
-</p>
+[![Skills](https://skills.syvixor.com/api/icons?perline=10&i=golang,nodejs,python,markdown,cpp)](https://github.com/syvixor/skills-icons)
+
+## Developer Tools
+
+[![Skills](https://skills.syvixor.com/api/icons?perline=10&i=goland,vscode,github,gitlab,githubactions,leetcode,docker,codex,deepseek,apifox)](https://github.com/syvixor/skills-icons)
 
 ## Focus Areas
 
