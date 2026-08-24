@@ -298,6 +298,31 @@
       "contentType": "post",
       "hidden": false,
       "markdown": "---\ntitle: AI 辅助开发的个人工作流\ndate: 2026-06-28\ncategory: AI 工程\ntags: AI Agent, MCP, 工作流\nreadTime: 6 分钟阅读\nsummary: AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。\ncover: ../images/logos/mcp-logo.svg\n---\n\n我把 AI 辅助开发当作一个工程协作者，而不是魔法按钮。它擅长快速阅读、生成候选方案、批量修改和验证，但方向、取舍和最终判断仍然要回到工程目标。\n\n## 先让上下文变清楚\n\n在真实项目里，最重要的第一步通常不是写代码，而是建立上下文：入口在哪里、现有风格是什么、测试怎么跑、改动会影响谁。\n\n- 让工具先读代码，再让它动手。\n- 要求它复用已有模式，而不是重新发明结构。\n- 把验证命令和观察结果写清楚。\n\n## MCP 和本地工具\n\nMCP 的价值在于把外部系统、知识库和本地工具接入同一条工作流。对我来说，好的 AI 工程化不是模型更炫，而是上下文获取更可靠、验证更直接。\n\n## 视频素材\n\n后续如果要在文章里插入视频，可以把文件放入 `assets/vedios`，然后用 HTML 片段引用：\n\n```html\n<video controls src=\"../vedios/demo.mp4\"></video>\n```\n"
+    },
+    {
+      "name": "git-config-author-and-cla.md",
+      "path": "assets/paper/git-config-author-and-cla.md",
+      "sourcePath": "./assets/paper/git-config-author-and-cla.md",
+      "slug": "git-config-author-and-cla",
+      "type": "file",
+      "title": "Git 作者信息要和 gh 账号保持一致",
+      "description": "Git 的作者名和邮箱如果没有和常用 gh 账号对齐，提交历史会分裂，开源项目里的 CLA 校验也可能把你识别成另一个没有完成协议的身份。",
+      "summary": "Git 的作者名和邮箱如果没有和常用 gh 账号对齐，提交历史会分裂，开源项目里的 CLA 校验也可能把你识别成另一个没有完成协议的身份。",
+      "date": "2026-08-24",
+      "category": "Git 协作",
+      "tags": [
+        "Git",
+        "GitHub",
+        "gh",
+        "CLA"
+      ],
+      "readTime": "4 分钟阅读",
+      "readingTime": 4,
+      "excerpt": "Git 的作者名和邮箱如果没有和常用 gh 账号对齐，提交历史会分裂，开源项目里的 CLA 校验也可能把你识别成另一个没有完成协议的身份。",
+      "cover": "../images/logos/git-icon.svg",
+      "contentType": "post",
+      "hidden": false,
+      "markdown": "---\ntitle: Git 作者信息要和 gh 账号保持一致\ndate: 2026-08-24\ncategory: Git 协作\ntags: Git, GitHub, gh, CLA\nreadTime: 4 分钟阅读\nsummary: Git 的作者名和邮箱如果没有和常用 gh 账号对齐，提交历史会分裂，开源项目里的 CLA 校验也可能把你识别成另一个没有完成协议的身份。\ncover: ../images/logos/git-icon.svg\n---\n\n我更愿意把 `git config` 里的作者信息看成身份配置，而不是本地偏好。`user.name` 和 `user.email` 决定了提交历史里显示谁，也影响很多平台怎么把提交归到哪个 GitHub 账号。\n\n## 先说结论\n\n最稳妥的做法，是把当前仓库或全局配置里的作者信息，设置成你实际用 `gh` 登录的账号对应身份。至少保证邮箱是 GitHub 已验证的邮箱，名字也尽量保持一致。\n\n```bash\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"you@example.com\"\ngh auth status\ngit config --list --show-origin | rg \"user.name|user.email\"\n```\n\n## 配错会发生什么\n\n如果 `user.name` 或 `user.email` 没配好，Git 历史里就会出现多个作者变体。同一个人可能一会儿是 A，一会儿是 A(工作)，一会儿又是别的拼写。短期看只是难看，长期看会让贡献统计、代码审查和历史追踪都变得很乱。\n\n更麻烦的是开源协作。很多项目在合并 PR 之前会要求签署 CLA 或类似协议，校验通常会绑定到 GitHub 账号、提交邮箱或贡献者身份。作者信息不一致时，系统可能把你的提交当成“另一个人”，于是就会出现这个账号看起来没有签署过协议的情况。\n\n## 怎么配更稳\n\n如果你只有一个常用身份，就直接统一配置。\n如果你有工作和个人两套身份，就按仓库分别配，别混在一起。\n\n真正要紧的不是把名字写得多复杂，而是让提交历史和账号身份稳定对应。\n"
     }
   ],
   "tree": [
@@ -585,6 +610,30 @@
       "readingTime": 6,
       "excerpt": "AI 编程工具真正有价值的地方，不是替代思考，而是把检索、验证、重复编辑和上下文整理变得更快。",
       "cover": "../images/logos/mcp-logo.svg",
+      "contentType": "post",
+      "hidden": false
+    },
+    {
+      "name": "git-config-author-and-cla.md",
+      "path": "assets/paper/git-config-author-and-cla.md",
+      "sourcePath": "./assets/paper/git-config-author-and-cla.md",
+      "slug": "git-config-author-and-cla",
+      "type": "file",
+      "title": "Git 作者信息要和 gh 账号保持一致",
+      "description": "Git 的作者名和邮箱如果没有和常用 gh 账号对齐，提交历史会分裂，开源项目里的 CLA 校验也可能把你识别成另一个没有完成协议的身份。",
+      "summary": "Git 的作者名和邮箱如果没有和常用 gh 账号对齐，提交历史会分裂，开源项目里的 CLA 校验也可能把你识别成另一个没有完成协议的身份。",
+      "date": "2026-08-24",
+      "category": "Git 协作",
+      "tags": [
+        "Git",
+        "GitHub",
+        "gh",
+        "CLA"
+      ],
+      "readTime": "4 分钟阅读",
+      "readingTime": 4,
+      "excerpt": "Git 的作者名和邮箱如果没有和常用 gh 账号对齐，提交历史会分裂，开源项目里的 CLA 校验也可能把你识别成另一个没有完成协议的身份。",
+      "cover": "../images/logos/git-icon.svg",
       "contentType": "post",
       "hidden": false
     }
