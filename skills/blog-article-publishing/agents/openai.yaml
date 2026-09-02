@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blog Article Publishing"
+  short_description: "Write and publish blog articles for this repo"
+  default_prompt: "Use $blog-article-publishing to write or publish an article for this blog repo: create assets/paper/<slug>.md with the repo front matter conventions, apply the logo/cover rule, register the file in assets/paper/index.json, rebuild content-index.json with node scripts/build-content-index.js, preview via a local static server, then commit and push to main for GitHub Pages."
