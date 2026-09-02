@@ -114,4 +114,3 @@ dsh plugin --profile web add dsh-better-sidebar@latest
 
 另外我比较看好的一点是，这类插件把 DSH 的 Web 界面做成了可扩展的工作台：文件、终端、浏览器、diff 都可以变成模型能调用的工具。AI 会话不再停留在对话框里，而是真的住在开发环境里——这大概是我后续会持续折腾的方向。
 
-相关阅读：[Windows + WSL 开发里的端口不可达：一次监控 Pull 模式排障](../post.html?slug=windows-wsl-port-troubleshooting)
