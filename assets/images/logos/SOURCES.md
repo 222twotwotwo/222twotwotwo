@@ -11,3 +11,6 @@
 - `dubbo-logo.png`: Apache Dubbo official logo repository, https://raw.githubusercontent.com/apache/dubbo-logo/master/DUBBO%20logo%E5%93%81%E7%89%8C%E8%89%B2.png
 - `seata-logo.png`: Apache Seata official website logo asset, https://seata.apache.org/img/seata_logo.png
 - `dubbo-seata-cover.png`: local composite made from `dubbo-logo.png` and `seata-logo.png`.
+- `dsh-logo.svg`: DeepSeek Harness official favicon asset, https://github.com/deepseek-ai/deepseek-harness/blob/main/website/public/favicon.svg
+- `vscode-logo.png`: VS Code official icon asset, https://github.com/microsoft/vscode/blob/main/resources/linux/code.png
+- `dsh-vscode-wsl-cover.svg`: local composite made from `dsh-logo.svg` and `vscode-logo.png`.
