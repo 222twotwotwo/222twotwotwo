@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 410" width="900" height="410" role="img" aria-label="暖白社论风的设计 token：色板、字体层级与间距">
+  <rect width="900" height="410" fill="#F6F2E9"/>
+
+  <!-- 色板 -->
+  <rect x="0.5" y="0.5" width="159" height="89" fill="#F6F2E9" stroke="#E6DFCE"/>
+  <rect x="185.5" y="0.5" width="159" height="89" fill="#FFFDF8" stroke="#E6DFCE"/>
+  <rect x="370" y="0" width="160" height="90" fill="#241E14"/>
+  <rect x="555" y="0" width="160" height="90" fill="#2C2117"/>
+  <rect x="740" y="0" width="160" height="90" fill="#E0A93C"/>
+
+  <text x="0" y="116" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#241E14">#F6F2E9</text>
+  <text x="185" y="116" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#241E14">#FFFDF8</text>
+  <text x="370" y="116" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#241E14">#241E14</text>
+  <text x="555" y="116" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#241E14">#2C2117</text>
+  <text x="740" y="116" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#241E14">#E0A93C</text>
+
+  <text x="0" y="138" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#7C7361">页面底色</text>
+  <text x="185" y="138" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#7C7361">卡片底色</text>
+  <text x="370" y="138" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#7C7361">主文字</text>
+  <text x="555" y="138" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#7C7361">反转区底色</text>
+  <text x="740" y="138" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#7C7361">唯一强调色</text>
+
+  <rect x="0" y="170" width="900" height="1" fill="#E6DFCE"/>
+
+  <!-- 字体层级 -->
+  <rect x="0" y="194" width="44" height="3" fill="#E0A93C"/>
+  <text x="0" y="256" font-family="Noto Serif SC, Source Han Serif SC, Songti SC, SimSun, serif" font-size="34" font-weight="700" letter-spacing="0.5" fill="#241E14">暖白社论风</text>
+  <text x="900" y="250" text-anchor="end" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" font-weight="600" letter-spacing="2" fill="#7C7361">SERIF 700 · 标题</text>
+  <text x="0" y="294" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="15" fill="#7C7361">正文用无衬线，段落限宽 72ch。</text>
+  <text x="900" y="292" text-anchor="end" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" font-weight="600" letter-spacing="2" fill="#7C7361">SANS 400 · 正文 15px</text>
+
+  <rect x="0" y="324" width="900" height="1" fill="#E6DFCE"/>
+
+  <!-- 间距档位 -->
+  <text x="0" y="360" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#7C7361">段内间距 4 档</text>
+  <rect x="140" y="368" width="44" height="8" fill="#C9BFA6"/>
+  <rect x="196" y="360" width="44" height="16" fill="#C9BFA6"/>
+  <rect x="252" y="348" width="44" height="28" fill="#C9BFA6"/>
+  <rect x="308" y="328" width="44" height="48" fill="#C9BFA6"/>
+  <text x="140" y="398" font-family="Consolas, Menlo, monospace" font-size="11" fill="#7C7361">8</text>
+  <text x="196" y="398" font-family="Consolas, Menlo, monospace" font-size="11" fill="#7C7361">16</text>
+  <text x="252" y="398" font-family="Consolas, Menlo, monospace" font-size="11" fill="#7C7361">28</text>
+  <text x="308" y="398" font-family="Consolas, Menlo, monospace" font-size="11" fill="#7C7361">48</text>
+  <text x="430" y="360" font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#7C7361">区块留白 150px · 全站直角 radius 0 · 全站零阴影</text>
+</svg>

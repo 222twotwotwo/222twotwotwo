@@ -14,3 +14,14 @@
 - `dsh-logo.svg`: DeepSeek Harness official favicon asset, https://github.com/deepseek-ai/deepseek-harness/blob/main/website/public/favicon.svg
 - `vscode-logo.png`: VS Code official icon asset, https://github.com/microsoft/vscode/blob/main/resources/linux/code.png
 - `dsh-vscode-wsl-cover.svg`: local composite made from `dsh-logo.svg` and `vscode-logo.png`.
+- `awwwards-logo.svg`: Awwwards site mark, https://assets.awwwards.com/assets/images/favicon.svg
+- `onepagelove-logo.svg`: One Page Love logo (on-light version), https://onepagelove.com/wp-content/themes/onepagelove/assets/opl-logo-on-light.svg
+- `evolve-private-wealth-logo.svg`: Evolve Private Wealth wordmark, https://cdn.sanity.io/images/2ro1tlcz/production/1b4b439be7fe6d2a84cb93f805653fc12c79993f-258x33.svg
+- `vue-logo.svg`: Vue official logo, https://raw.githubusercontent.com/vuejs/art/master/logo.svg
+- `quasar-logo.svg`: Quasar official logo, https://cdn.quasar.dev/logo-v2/svg/logo.svg
+- `vite-logo.svg`: Vite brand icon via Simple Icons, https://cdn.simpleicons.org/vite (the official `docs/public/logo.svg` is white-only and invisible on light backgrounds)
+- `threejs-logo.svg`: three.js official icon, https://raw.githubusercontent.com/mrdoob/three.js/dev/files/icon.svg
+- `warm-editorial-cover-inline.svg`: local composite cover for the "参考站驱动 UI 风格迭代" article.
+- `design-refs-inline.svg`: local composite of the three reference sites used in that article.
+- `warm-editorial-tokens-inline.svg`: local composite showing the warm editorial palette and type scale.
+- `frontend-stack-inline.svg`: local composite made from `vue-logo.svg`, `quasar-logo.svg`, `vite-logo.svg` and `threejs-logo.svg`.

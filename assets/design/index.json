@@ -1,0 +1,46 @@
+{
+  "convention": "assets/design/<风格代号>-<文档类型>-<YYYY-MM-DD>.md。新增一份设计文档时按命名规则丢进该目录，再跑一次 scripts/build-content-index.js，本文件会自动重建。日期后缀用于版本并存，不覆盖旧版。",
+  "count": 4,
+  "docs": [
+    {
+      "name": "warm-editorial-spec-2026-09-21.md",
+      "path": "assets/design/warm-editorial-spec-2026-09-21.md",
+      "sourcePath": "./assets/design/warm-editorial-spec-2026-09-21.md",
+      "slug": "warm-editorial-spec",
+      "date": "2026-09-21",
+      "title": "design.md · 暖白社论风（Warm Editorial）",
+      "summary": "暖白社论风的完整设计规范与复现手册：色板、字体层级、间距与网格、三个排版范式、组件规格、断点降级、Quasar 适配坑、实现约定与验收清单。原属「逐梦之夏」官网项目，作为可复用的 UI 风格资产归档于此。参考截图未一并归档（体积大且为第三方站点截图）。",
+      "lines": 410
+    },
+    {
+      "name": "warm-editorial-analysis-2026-09-20.md",
+      "path": "assets/design/warm-editorial-analysis-2026-09-20.md",
+      "sourcePath": "./assets/design/warm-editorial-analysis-2026-09-20.md",
+      "slug": "warm-editorial-analysis",
+      "date": "2026-09-20",
+      "title": "参考设计风格分析（三站对照）",
+      "summary": "Awwwards / Evolve Private Wealth / One Page Love 三站 × 五维度（配色 · 字体 · 间距 · 组件 · 布局）逐项拆解，末尾给出「当前项目现状 → 参考站做法 → 建议取用」的迁移结论表。",
+      "lines": 171
+    },
+    {
+      "name": "warm-editorial-prompt-2026-09-20.md",
+      "path": "assets/design/warm-editorial-prompt-2026-09-20.md",
+      "sourcePath": "./assets/design/warm-editorial-prompt-2026-09-20.md",
+      "slug": "warm-editorial-prompt",
+      "date": "2026-09-20",
+      "title": "「逐梦之夏」UI 风格迭代 — 提示词包",
+      "summary": "两段可直接投喂的风格迭代提示词（A 通用版 / B 项目专用版），外加「截图 → 用途」映射表，用来把参考截图交给任意会话执行。",
+      "lines": 129
+    },
+    {
+      "name": "warm-editorial-refs-2026-09-20.md",
+      "path": "assets/design/warm-editorial-refs-2026-09-20.md",
+      "sourcePath": "./assets/design/warm-editorial-refs-2026-09-20.md",
+      "slug": "warm-editorial-refs",
+      "date": "2026-09-20",
+      "title": "设计参考包 · 索引",
+      "summary": "三个参考站的子链接清单（分类导航页 + 作品详情页）与截图索引，说明「从哪里找风格样本」，以及详情页的结构规律。",
+      "lines": 98
+    }
+  ]
+}
