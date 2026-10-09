@@ -12,6 +12,15 @@
       "createdAt": "2026-09-26"
     },
     {
+      "org": "AlexStocks",
+      "repo": "getty",
+      "number": 140,
+      "title": "Fix client reconnect lifecycle handling",
+      "url": "https://github.com/AlexStocks/getty/pull/140",
+      "state": "merged",
+      "createdAt": "2026-09-03"
+    },
+    {
       "org": "apache",
       "repo": "dubbo-getty",
       "number": 144,
@@ -66,6 +75,24 @@
       "createdAt": "2026-07-23"
     },
     {
+      "org": "AlexStocks",
+      "repo": "getty",
+      "number": 99,
+      "title": "fix: close websocket self-connect connection",
+      "url": "https://github.com/AlexStocks/getty/pull/99",
+      "state": "merged",
+      "createdAt": "2026-07-23"
+    },
+    {
+      "org": "AlexStocks",
+      "repo": "getty",
+      "number": 98,
+      "title": "Fix nil listener session callbacks",
+      "url": "https://github.com/AlexStocks/getty/pull/98",
+      "state": "merged",
+      "createdAt": "2026-07-22"
+    },
+    {
       "org": "apache",
       "repo": "dubbo-getty",
       "number": 137,
@@ -111,6 +138,15 @@
       "createdAt": "2026-05-25"
     },
     {
+      "org": "sykesP42",
+      "repo": "AutoToon",
+      "number": 3,
+      "title": "add images",
+      "url": "https://github.com/sykesP42/AutoToon/pull/3",
+      "state": "merged",
+      "createdAt": "2026-05-18"
+    },
+    {
       "org": "apache",
       "repo": "dubbo-go-pixiu-samples",
       "number": 151,
@@ -138,6 +174,15 @@
       "createdAt": "2026-05-16"
     },
     {
+      "org": "sykesP42",
+      "repo": "AutoToon",
+      "number": 2,
+      "title": "自动调节对比度主色调",
+      "url": "https://github.com/sykesP42/AutoToon/pull/2",
+      "state": "merged",
+      "createdAt": "2026-05-10"
+    },
+    {
       "org": "apache",
       "repo": "dubbo-go-pixiu",
       "number": 922,
@@ -145,6 +190,15 @@
       "url": "https://github.com/apache/dubbo-go-pixiu/pull/922",
       "state": "merged",
       "createdAt": "2026-05-05"
+    },
+    {
+      "org": "sykesP42",
+      "repo": "AutoToon",
+      "number": 1,
+      "title": "整理HybriToon目录结构，添加插件与ONNX相关文件",
+      "url": "https://github.com/sykesP42/AutoToon/pull/1",
+      "state": "merged",
+      "createdAt": "2026-04-23"
     }
   ]
 }
