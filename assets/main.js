@@ -2,6 +2,7 @@
   const CONTENT_INDEX = "./content-index.json";
   const PAPER_INDEX = "./assets/paper/index.json";
   const isPostPage = document.body.dataset.page === "post";
+  const isOpensourcePage = document.body.dataset.page === "opensource";
   const siteTitle = "222twotwotwo";
   const state = {
     activeTag: "全部",
@@ -577,20 +578,22 @@
     }
   }
 
-  loadPosts().catch((error) => {
-    console.error(error);
-    state.ready = false;
-    if (els.postCount) {
-      els.postCount.textContent = "离线";
-    }
-    if (els.postList) {
-      els.postList.innerHTML = "";
-    }
-    setStatus(
-      "文章加载失败。请通过本地静态服务器或 GitHub Pages 打开页面，而不是直接双击 file://。",
-      "error"
-    );
-  });
-
-  loadPullRequests();
+  if (isOpensourcePage) {
+    loadPullRequests();
+  } else {
+    loadPosts().catch((error) => {
+      console.error(error);
+      state.ready = false;
+      if (els.postCount) {
+        els.postCount.textContent = "离线";
+      }
+      if (els.postList) {
+        els.postList.innerHTML = "";
+      }
+      setStatus(
+        "文章加载失败。请通过本地静态服务器或 GitHub Pages 打开页面，而不是直接双击 file://。",
+        "error"
+      );
+    });
+  }
 })();

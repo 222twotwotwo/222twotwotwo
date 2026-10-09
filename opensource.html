@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="222twotwotwo 的个人静态博客文章，记录 Go 后端、微服务、RPC、AI 工程化与开源学习。"
+      content="222twotwotwo 在 Apache 与 OceanBase 的开源 PR 贡献记录。"
     />
-    <title>文章 | 222twotwotwo</title>
+    <title>开源贡献 | 222twotwotwo</title>
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
-  <body data-page="post">
-    <a class="skip-link" href="#postView">跳到文章正文</a>
+  <body data-page="opensource">
+    <a class="skip-link" href="#prList">跳到开源贡献列表</a>
 
     <header class="site-header">
       <a class="brand" href="https://github.com/222twotwotwo" aria-label="访问 222twotwotwo GitHub 主页">
@@ -23,14 +23,27 @@
       </a>
       <nav class="site-nav" aria-label="主导航">
         <a href="./">文章</a>
-        <a href="./opensource.html">开源</a>
+        <a href="./opensource.html" aria-current="page">开源</a>
         <a href="./#contact">联系</a>
       </nav>
     </header>
 
-    <main class="post-page-main">
-      <p id="contentStatus" class="content-status" hidden></p>
-      <article id="postView" class="post-view" aria-live="polite"></article>
+    <main>
+      <section class="projects-section" aria-labelledby="opensource-title">
+        <div class="section-heading">
+          <div>
+            <h2 id="opensource-title">开源</h2>
+          </div>
+          <a class="opensource-link" href="https://github.com/222twotwotwo" target="_blank" rel="noopener">
+            GitHub 主页
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
+        </div>
+        <p class="opensource-note">Apache 与 OceanBase 的已合并 PR 贡献记录（同步于 2026-10-09）。</p>
+        <div id="prList" class="pr-list" aria-live="polite"></div>
+      </section>
     </main>
 
     <footer id="contact" class="site-footer">
