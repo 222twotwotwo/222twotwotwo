@@ -560,6 +560,7 @@
       const data = await response.json();
       const stateLabel = { merged: "已合并", open: "进行中", closed: "已关闭" };
       els.prList.innerHTML = data.prs
+        .filter((pr) => pr.state !== "closed")
         .map(
           (pr) => `
         <a class="pr-item" href="${escapeHtml(pr.url)}" target="_blank" rel="noopener">

@@ -30,24 +30,6 @@
       "createdAt": "2026-08-23"
     },
     {
-      "org": "oceanbase",
-      "repo": "powercontext",
-      "number": 1316,
-      "title": "fix: handle windows hook unicode prompts",
-      "url": "https://github.com/oceanbase/powercontext/pull/1316",
-      "state": "closed",
-      "createdAt": "2026-08-22"
-    },
-    {
-      "org": "apache",
-      "repo": "dubbo-getty",
-      "number": 141,
-      "title": "Fix client shutdown deadlock",
-      "url": "https://github.com/apache/dubbo-getty/pull/141",
-      "state": "closed",
-      "createdAt": "2026-08-14"
-    },
-    {
       "org": "apache",
       "repo": "dubbo-getty",
       "number": 142,
@@ -104,29 +86,11 @@
     {
       "org": "apache",
       "repo": "dubbo-getty",
-      "number": 133,
-      "title": "[FIX] fix nil listener cleanup callbacks",
-      "url": "https://github.com/apache/dubbo-getty/pull/133",
-      "state": "closed",
-      "createdAt": "2026-07-16"
-    },
-    {
-      "org": "apache",
-      "repo": "dubbo-getty",
       "number": 135,
       "title": "fix modernize fmt flag",
       "url": "https://github.com/apache/dubbo-getty/pull/135",
       "state": "merged",
       "createdAt": "2026-07-16"
-    },
-    {
-      "org": "apache",
-      "repo": "incubator-seata-go",
-      "number": 1132,
-      "title": "fix:stores nil for unimplemented registry types",
-      "url": "https://github.com/apache/incubator-seata-go/pull/1132",
-      "state": "closed",
-      "createdAt": "2026-07-04"
     },
     {
       "org": "apache",
