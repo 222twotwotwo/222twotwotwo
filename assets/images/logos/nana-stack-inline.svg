@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" width="960" height="430" role="img" aria-label="nana 架构：浏览器端 Vue 3 与本地存储，服务端 Node.js 统一代理 31 个来源">
+  <rect width="960" height="430" fill="#F6F2E9"/>
+
+  <g font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif">
+    <!-- 浏览器端 -->
+    <rect x="40" y="56" width="256" height="300" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <rect x="40" y="56" width="256" height="40" fill="#241E14"/>
+    <text x="60" y="82" font-size="15" font-weight="700" fill="#F6F2E9">浏览器 · Vue 3 单页应用</text>
+    <g transform="translate(248 66) scale(0.12)">
+      <path fill="#F6F2E9" d="M120.83 0L98.16 39.26 75.49 0H0l98.16 170.02L196.32 0h-75.49z"/>
+    </g>
+    <text x="60" y="128" font-size="13" fill="#7C7361">阅读器 / 漫画 / 音乐 / 番剧</text>
+    <text x="60" y="152" font-size="13" fill="#7C7361">Pinia 状态 · hls.js 播放</text>
+    <rect x="60" y="180" width="216" height="1" fill="#E5DECF"/>
+    <text x="60" y="212" font-size="13" fill="#7C7361">Service Worker 缓存应用壳</text>
+    <text x="60" y="236" font-size="13" fill="#7C7361">章节与图片按需缓存</text>
+    <rect x="60" y="262" width="216" height="76" fill="#F6F2E9" stroke="#E0A93C" stroke-width="1"/>
+    <text x="74" y="290" font-size="13" font-weight="700" fill="#241E14">IndexedDB · 本地数据</text>
+    <text x="74" y="314" font-size="12" fill="#7C7361">收藏、进度、情绪分析</text>
+    <text x="74" y="330" font-size="12" fill="#E0A93C" font-weight="600">数据不出本机</text>
+
+    <!-- 箭头 1 -->
+    <path d="M296 206 h60" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M348 200 l10 6 -10 6" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <text x="304" y="192" font-size="11" fill="#7C7361">JSON API</text>
+
+    <!-- 服务端 -->
+    <rect x="358" y="56" width="256" height="300" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <rect x="358" y="56" width="256" height="40" fill="#5FA04E"/>
+    <text x="378" y="82" font-size="15" font-weight="700" fill="#F6F2E9">服务端 · Node.js</text>
+    <text x="378" y="128" font-size="13" fill="#7C7361">来源适配器 × 31</text>
+    <text x="378" y="152" font-size="13" fill="#7C7361">search / detail / content / play</text>
+    <rect x="378" y="180" width="216" height="1" fill="#E5DECF"/>
+    <text x="378" y="212" font-size="13" fill="#7C7361">文件缓存 · TTL 分级</text>
+    <text x="378" y="236" font-size="13" fill="#7C7361">来源健康检查 · 失效探测</text>
+    <text x="378" y="260" font-size="13" fill="#7C7361">图片代理 · 音视频 Range 转发</text>
+    <text x="378" y="284" font-size="13" fill="#7C7361">URL 白名单 · 每源限并发</text>
+    <text x="378" y="326" font-size="12" fill="#E0A93C" font-weight="600">浏览器不直接访问源站</text>
+
+    <!-- 箭头 2 -->
+    <path d="M614 206 h60" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M666 200 l10 6 -10 6" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <text x="620" y="192" font-size="11" fill="#7C7361">按需抓取</text>
+
+    <!-- 来源 -->
+    <rect x="676" y="56" width="244" height="300" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <g text-anchor="middle">
+      <rect x="700" y="84" width="196" height="50" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+      <text x="798" y="115" font-size="14" fill="#241E14">小说 · 文库源 × 6</text>
+      <rect x="700" y="148" width="196" height="50" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+      <text x="798" y="179" font-size="14" fill="#241E14">漫画源 × 5</text>
+      <rect x="700" y="212" width="196" height="50" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+      <text x="798" y="243" font-size="14" fill="#241E14">音乐源 × 4</text>
+      <rect x="700" y="276" width="196" height="50" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+      <text x="798" y="307" font-size="14" fill="#241E14">番剧源 × 16</text>
+      <text x="798" y="352" font-size="11" fill="#7C7361">番剧规则来自 KazumiRules</text>
+    </g>
+  </g>
+</svg>

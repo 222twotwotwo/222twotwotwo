@@ -25,3 +25,6 @@
 - `design-refs-inline.svg`: local composite of the three reference sites used in that article.
 - `warm-editorial-tokens-inline.svg`: local composite showing the warm editorial palette and type scale.
 - `frontend-stack-inline.svg`: local composite made from `vue-logo.svg`, `quasar-logo.svg`, `vite-logo.svg` and `threejs-logo.svg`.
+- `nodejs-logo.svg`: Node.js brand icon via Simple Icons, https://cdn.simpleicons.org/nodedotjs/5FA04E (Node.js official wordmark SVG is white-on-transparent and invisible on light backgrounds)
+- `nana-cover-inline.svg`: local composite cover for the "nana 本地内容应用" article, made from `vue-logo.svg` and `nodejs-logo.svg`.
+- `nana-stack-inline.svg`: local architecture diagram for the "nana 本地内容应用" article.
