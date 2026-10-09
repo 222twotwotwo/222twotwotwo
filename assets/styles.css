@@ -262,6 +262,19 @@ main {
   color: var(--teal);
 }
 
+.tag-filters button.tag-more {
+  border: none;
+  background: transparent;
+  color: var(--teal);
+  letter-spacing: 2px;
+}
+
+.tag-filters button.tag-more:hover {
+  border: none;
+  background: transparent;
+  color: var(--ink);
+}
+
 .paper-section {
   min-width: 0;
 }

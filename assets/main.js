@@ -5,6 +5,7 @@
   const siteTitle = "222twotwotwo";
   const state = {
     activeTag: "全部",
+    tagExpanded: false,
     posts: [],
     ready: false
   };
@@ -341,11 +342,19 @@
     els.status.dataset.variant = variant || "";
   }
 
+  const TAG_COLLAPSED_COUNT = 8; // 折叠时展示「全部」+ 前 7 个标签，其余收进「更多」
+
   function renderTagFilters() {
     if (!els.tagFilters) return;
 
+    const tags = uniqueTags();
+    const hasMore = tags.length > TAG_COLLAPSED_COUNT + 1;
+    const hiddenTags = hasMore ? tags.slice(TAG_COLLAPSED_COUNT) : [];
+    // 折叠状态下若选中的标签恰好被收起，自动展开
+    const expanded = !hasMore || state.tagExpanded || hiddenTags.includes(state.activeTag);
+
     els.tagFilters.innerHTML = "";
-    uniqueTags().forEach((tag) => {
+    (expanded ? tags : tags.slice(0, TAG_COLLAPSED_COUNT)).forEach((tag) => {
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = tag;
@@ -357,6 +366,19 @@
       });
       els.tagFilters.appendChild(button);
     });
+
+    if (hasMore) {
+      const more = document.createElement("button");
+      more.type = "button";
+      more.className = "tag-more";
+      more.textContent = expanded ? "收起" : "··· 更多";
+      more.setAttribute("aria-expanded", expanded ? "true" : "false");
+      more.addEventListener("click", () => {
+        state.tagExpanded = !state.tagExpanded;
+        renderTagFilters();
+      });
+      els.tagFilters.appendChild(more);
+    }
   }
 
   function renderPostList() {
