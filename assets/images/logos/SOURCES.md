@@ -28,3 +28,4 @@
 - `nodejs-logo.svg`: Node.js brand icon via Simple Icons, https://cdn.simpleicons.org/nodedotjs/5FA04E (Node.js official wordmark SVG is white-on-transparent and invisible on light backgrounds)
 - `nana-cover-inline.svg`: local composite cover for the "nana 本地内容应用" article, made from `vue-logo.svg` and `nodejs-logo.svg`.
 - `nana-stack-inline.svg`: local architecture diagram for the "nana 本地内容应用" article.
+- `nana-tunnel-inline.svg`: local Cloudflare quick-tunnel diagram for the "nana 本地内容应用" article.

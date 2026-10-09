@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380" role="img" aria-label="Cloudflare 临时隧道：外网设备经 Cloudflare 边缘回源到家里的 nana，家里只出不进">
+  <rect width="960" height="380" fill="#F6F2E9"/>
+
+  <g font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif">
+    <!-- 外网设备 -->
+    <rect x="40" y="120" width="200" height="120" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <rect x="40" y="120" width="200" height="36" fill="#241E14"/>
+    <text x="140" y="144" text-anchor="middle" font-size="14" font-weight="700" fill="#F6F2E9">出门在外的设备</text>
+    <text x="140" y="186" text-anchor="middle" font-size="13" fill="#7C7361">手机 / 平板 / 电脑</text>
+    <text x="140" y="212" text-anchor="middle" font-size="12" fill="#E0A93C" font-weight="600">浏览器打开公网地址</text>
+
+    <!-- Cloudflare 边缘 -->
+    <rect x="330" y="120" width="230" height="120" fill="#FFFDF8" stroke="#E0A93C" stroke-width="1"/>
+    <rect x="330" y="120" width="230" height="36" fill="#E0A93C"/>
+    <text x="445" y="144" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">Cloudflare 边缘</text>
+    <text x="445" y="186" text-anchor="middle" font-size="12" fill="#7C7361">https://xxx.trycloudflare.com</text>
+    <text x="445" y="212" text-anchor="middle" font-size="12" fill="#7C7361">临时地址 · 每次重启都换</text>
+
+    <!-- 家里电脑 -->
+    <rect x="650" y="84" width="270" height="196" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <rect x="650" y="84" width="270" height="36" fill="#241E14"/>
+    <text x="785" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#F6F2E9">家里的电脑</text>
+    <rect x="674" y="140" width="222" height="56" fill="#F6F2E9" stroke="#5FA04E" stroke-width="1"/>
+    <text x="686" y="163" font-size="13" font-weight="700" fill="#241E14">cloudflared</text>
+    <text x="686" y="184" font-size="12" fill="#5FA04E" font-weight="600">只发起出站连接，不开端口</text>
+    <rect x="674" y="208" width="222" height="56" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="686" y="231" font-size="13" font-weight="700" fill="#241E14">nana 服务端</text>
+    <text x="686" y="252" font-size="12" fill="#7C7361">监听 127.0.0.1:8761</text>
+
+    <!-- 箭头：设备 → 边缘 -->
+    <path d="M240 180 h80" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M312 174 l10 6 -10 6" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <text x="250" y="166" font-size="11" fill="#7C7361">HTTPS 请求</text>
+
+    <!-- 箭头：边缘 → 家里（回源） -->
+    <path d="M560 180 h80" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M632 174 l10 6 -10 6" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <text x="566" y="166" font-size="11" fill="#7C7361">回源</text>
+
+    <!-- 回程虚线：家里 → 边缘（出站建立） -->
+    <path d="M650 60 C540 20 420 20 340 60" stroke="#E0A93C" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+    <path d="M348 52 l-10 8 12 3" stroke="#E0A93C" stroke-width="1" fill="none"/>
+    <text x="445" y="34" text-anchor="middle" font-size="11" fill="#E0A93C" font-weight="600">cloudflared 启动时主动拨出的隧道连接（双向复用）</text>
+
+    <!-- 底注 -->
+    <text x="480" y="330" text-anchor="middle" font-size="13" fill="#7C7361">路由器不开任何入站端口，没有公网 IP 也能用；TLS 由边缘终止</text>
+    <text x="480" y="354" text-anchor="middle" font-size="12" fill="#7C7361">临时隧道无需账号和域名；需要固定地址时改用命名隧道（免费，需登录）</text>
+  </g>
+</svg>
