@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="关于 222twotwotwo：Go 后端、微服务、RPC、AI 工程化与开源学习。"
+    />
+    <title>关于 | 222twotwotwo</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="about">
+    <a class="skip-link" href="#aboutBody">跳到关于内容</a>
+
+    <header class="site-header">
+      <a class="brand" href="https://github.com/222twotwotwo" aria-label="访问 222twotwotwo GitHub 主页">
+        <img src="./assets/images/avatar.png" alt="222twotwotwo 头像" />
+        <span>222twotwotwo</span>
+        <svg class="brand-ext" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17 17 7M9 7h8v8" />
+        </svg>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="./">文章</a>
+        <a href="./opensource.html">开源</a>
+        <a href="./friends.html">友链</a>
+        <a href="./about.html" aria-current="page">关于</a>
+        <a href="./#contact">联系</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="projects-section" aria-labelledby="about-title">
+        <div class="section-heading">
+          <div>
+            <h2 id="about-title">关于</h2>
+          </div>
+          <a class="opensource-link" href="https://github.com/222twotwotwo/222twotwotwo/blob/main/README.md" target="_blank" rel="noopener">
+            在 GitHub 查看
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
+        </div>
+        <p id="contentStatus" class="content-status" hidden></p>
+        <div id="aboutBody" class="post-body readme-body" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <div>
+        <strong>联系方式</strong>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:3379571673@qq.com">3379571673@qq.com</a>
+        <a href="https://github.com/222twotwotwo">GitHub</a>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const READ_ME = "./README.md";
+        const target = document.querySelector("#aboutBody");
+        const status = document.querySelector("#contentStatus");
+
+        function escapeHtml(value) {
+          return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
+
+        function inline(text) {
+          let html = escapeHtml(text);
+          html = html.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
+          html = html.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (_, label, href) {
+            const external = /^(https?:)?\/\//i.test(href);
+            return `<a href="${href}"${external ? ' target="_blank" rel="noopener"' : ""}>${label}</a>`;
+          });
+          html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+          html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+          html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+          return html;
+        }
+
+        // README 里大量使用原生 HTML（徽章、居中块、GitHub Stats），按标签深度整块透传
+        const CONTAINER = /<(\/?)(div|p|table|section|ul|ol|h1)\b/g;
+        function tagDepth(line) {
+          let depth = 0;
+          let match;
+          CONTAINER.lastIndex = 0;
+          while ((match = CONTAINER.exec(line))) {
+            depth += match[1] ? -1 : 1;
+          }
+          return depth;
+        }
+
+        function renderMarkdown(markdown) {
+          const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+          const output = [];
+          let index = 0;
+
+          while (index < lines.length) {
+            const trimmed = lines[index].trim();
+
+            if (!trimmed) {
+              index += 1;
+              continue;
+            }
+
+            if (trimmed.startsWith("<")) {
+              const raw = [];
+              let depth = 0;
+              while (index < lines.length) {
+                const line = lines[index];
+                if (!line.trim() && depth <= 0) break;
+                raw.push(line);
+                depth += tagDepth(line);
+                index += 1;
+                if (depth <= 0) break;
+              }
+              output.push(raw.join("\n"));
+              continue;
+            }
+
+            if (/^-{3,}$/.test(trimmed)) {
+              output.push("<hr />");
+              index += 1;
+              continue;
+            }
+
+            if (trimmed.startsWith("|")) {
+              const rows = [];
+              while (index < lines.length && lines[index].trim().startsWith("|")) {
+                rows.push(lines[index].trim());
+                index += 1;
+              }
+              if (rows.length >= 2 && /^\|[\s:|-]+\|?$/.test(rows[1])) {
+                const parse = (row) =>
+                  row.replace(/^\||\|$/g, "").split("|").map((cell) => cell.trim());
+                const head = parse(rows[0]);
+                const body = rows.slice(2).map(parse);
+                output.push(
+                  `<table><thead><tr>${head.map((cell) => `<th>${inline(cell)}</th>`).join("")}</tr></thead>` +
+                    `<tbody>${body
+                      .map((row) => `<tr>${row.map((cell) => `<td>${inline(cell)}</td>`).join("")}</tr>`)
+                      .join("")}</tbody></table>`
+                );
+                continue;
+              }
+            }
+
+            const heading = trimmed.match(/^(#{1,6})\s+(.+)$/);
+            if (heading) {
+              const level = Math.min(4, Math.max(2, heading[1].length));
+              output.push(`<h${level}>${inline(heading[2])}</h${level}>`);
+              index += 1;
+              continue;
+            }
+
+            if (/^[-*]\s+/.test(trimmed)) {
+              const items = [];
+              while (index < lines.length && /^[-*]\s+/.test(lines[index].trim())) {
+                items.push(lines[index].trim().replace(/^[-*]\s+/, ""));
+                index += 1;
+              }
+              output.push(`<ul>${items.map((item) => `<li>${inline(item)}</li>`).join("")}</ul>`);
+              continue;
+            }
+
+            const paragraph = [];
+            while (
+              index < lines.length &&
+              lines[index].trim() &&
+              !lines[index].trim().startsWith("<") &&
+              !lines[index].trim().startsWith("|") &&
+              !/^(#{1,6})\s+/.test(lines[index].trim()) &&
+              !/^[-*]\s+/.test(lines[index].trim()) &&
+              !/^-{3,}$/.test(lines[index].trim())
+            ) {
+              paragraph.push(lines[index].trim());
+              index += 1;
+            }
+            output.push(`<p>${inline(paragraph.join(" "))}</p>`);
+          }
+
+          return output.join("\n");
+        }
+
+        fetch(READ_ME, { cache: "no-cache" })
+          .then((response) => {
+            if (!response.ok) throw new Error("HTTP " + response.status);
+            return response.text();
+          })
+          .then((markdown) => {
+            target.innerHTML = renderMarkdown(markdown);
+          })
+          .catch((error) => {
+            console.error(error);
+            status.hidden = false;
+            status.dataset.variant = "error";
+            status.textContent =
+              "README 加载失败。请通过本地静态服务器或 GitHub Pages 打开页面，而不是直接双击 file://。";
+          });
+      })();
+    </script>
+  </body>
+</html>
