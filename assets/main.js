@@ -429,7 +429,6 @@
     document.title = `文章未找到 | ${siteTitle}`;
     els.postView.hidden = false;
     els.postView.innerHTML = `
-      <a class="back-link" href="./">返回文章列表</a>
       <div class="article-shell empty-article">
         <header class="article-header">
           <p class="eyebrow">文章未找到</p>
@@ -462,7 +461,6 @@
     }
     document.title = `${post.title} | ${siteTitle}`;
     els.postView.innerHTML = `
-      <a class="back-link" href="./">返回文章列表</a>
       <div class="article-shell">
         <header class="article-header">
           <div class="post-meta">
@@ -576,6 +574,18 @@
       console.error(error);
       els.prList.innerHTML = `<p class="empty-state">PR 记录加载失败，请访问 GitHub 主页查看。</p>`;
     }
+  }
+
+  const backTopButton = document.querySelector("#backTop");
+  if (backTopButton) {
+    const toggleBackTop = () => {
+      backTopButton.classList.toggle("visible", window.scrollY > 480);
+    };
+    window.addEventListener("scroll", toggleBackTop, { passive: true });
+    toggleBackTop();
+    backTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   }
 
   if (isOpensourcePage) {

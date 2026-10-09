@@ -256,8 +256,7 @@ main {
   text-transform: uppercase;
 }
 
-.footer-links a,
-.back-link {
+.footer-links a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -560,8 +559,39 @@ body[data-page="post"] .post-view {
   background: transparent;
 }
 
-body[data-page="post"] .back-link {
-  margin-bottom: 26px;
+.back-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--teal);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.back-top.visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.back-top:hover {
+  border-color: var(--teal);
 }
 
 body[data-page="post"] .article-shell {
