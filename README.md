@@ -55,7 +55,11 @@
 | [incubator-seata-go](https://github.com/222twotwotwo/incubator-seata-go) | Go | Learning and contribution focus around the Go implementation of Apache Seata |
 | [dubbo-go-pixiu](https://github.com/222twotwotwo/dubbo-go-pixiu) | Go | A dubbo-go based proxy gateway service focused on HTTP / gRPC / Dubbo integration |
 | [dubbo-go](https://github.com/222twotwotwo/dubbo-go) | Go | Apache Dubbo implementation in Go, focused on RPC framework internals and service governance |
-| [codegraph](https://github.com/222twotwotwo/codegraph) | TypeScript | A local code knowledge graph for Claude Code, Codex, Cursor, and other AI coding tools |
+| [powercontext](https://github.com/oceanbase/powercontext) | Python | An open-source memory and context system for AI applications |
+
+## Open Source Contributions
+
+Recent contributions cover [PowerContext](https://github.com/oceanbase/powercontext) memory and context features, connection and lifecycle fixes in [Apache Dubbo Getty](https://github.com/apache/dubbo-getty) and [Getty](https://github.com/AlexStocks/getty), gateway fixes and tests in [Dubbo Go Pixiu](https://github.com/apache/dubbo-go-pixiu) and its samples, plus tooling and asset improvements in [AutoToon](https://github.com/sykesP42/AutoToon).
 
 ## Open Source Interests
 
@@ -64,7 +68,7 @@ I often read and follow open source projects in these areas:
 - Apache Dubbo / dubbo-go / dubbo-go-pixiu
 - Apache Seata / incubator-seata-go
 - Go microservice frameworks and cloud-native infrastructure
-- MCP servers, AI agents, code knowledge graphs, and developer tools
+- MCP servers, AI agents, memory and context systems, and developer tools
 - Automated code review, engineering productivity, and personal knowledge management
 
 ## GitHub Stats

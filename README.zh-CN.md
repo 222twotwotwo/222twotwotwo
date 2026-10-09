@@ -55,7 +55,11 @@
 | [incubator-seata-go](https://github.com/222twotwotwo/incubator-seata-go) | Go | Apache Seata 的 Go 实现相关学习与贡献关注 |
 | [dubbo-go-pixiu](https://github.com/222twotwotwo/dubbo-go-pixiu) | Go | 基于 dubbo-go 的代理网关服务，关注 HTTP / gRPC / Dubbo 接入 |
 | [dubbo-go](https://github.com/222twotwotwo/dubbo-go) | Go | Apache Dubbo Go 实现，关注 RPC 框架与服务治理 |
-| [codegraph](https://github.com/222twotwotwo/codegraph) | TypeScript | 面向 Claude Code、Codex、Cursor 等工具的本地代码知识图谱 |
+| [powercontext](https://github.com/oceanbase/powercontext) | Python | 面向 AI 应用的开源记忆与上下文系统 |
+
+## Open Source Contributions
+
+近期主要参与 [PowerContext](https://github.com/oceanbase/powercontext) 的记忆与上下文能力建设、[Apache Dubbo Getty](https://github.com/apache/dubbo-getty) 和 [Getty](https://github.com/AlexStocks/getty) 的连接与生命周期修复、[Dubbo Go Pixiu](https://github.com/apache/dubbo-go-pixiu) 及其示例项目的网关修复和测试，以及 [AutoToon](https://github.com/sykesP42/AutoToon) 的工具与资源改进。
 
 ## Open Source Interests
 
@@ -64,7 +68,7 @@
 - Apache Dubbo / dubbo-go / dubbo-go-pixiu
 - Apache Seata / incubator-seata-go
 - Go 微服务框架与云原生基础设施
-- MCP Server、AI Agent、代码知识图谱与开发者工具
+- MCP Server、AI Agent、记忆与上下文系统、开发者工具
 - 自动化代码审查、工程效率与个人知识管理
 
 ## GitHub Stats / 统计
