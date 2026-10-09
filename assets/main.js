@@ -402,8 +402,6 @@
     }
 
     const ICONS = {
-      calendar: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>',
-      book: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>',
       lines: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>',
       clock: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
       eye: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>'
@@ -418,14 +416,6 @@
         <a class="post-hitbox" href="${postHref(post.slug)}" aria-label="阅读《${escapeHtml(post.title)}》"></a>
         <div class="post-card-main">
           <h3><a href="${postHref(post.slug)}">${escapeHtml(post.title)}</a></h3>
-          <div class="post-meta-row">
-            <span class="meta-chip">${ICONS.calendar}${escapeHtml(post.date)}</span>
-            <span class="meta-chip">${ICONS.book}${escapeHtml(post.category)}</span>
-          </div>
-          <div class="card-tags-line">
-            <span class="meta-chip hash-chip">#</span>
-            <span class="tags-text">${post.tags.map((tag) => escapeHtml(tag)).join('<i class="tag-sep">/</i>')}</span>
-          </div>
           <p class="post-summary">${escapeHtml(post.summary)}</p>
           <div class="post-stats">
             <span>${ICONS.lines}${wordCount} 字</span>

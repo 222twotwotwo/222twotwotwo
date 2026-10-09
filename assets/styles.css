@@ -525,60 +525,6 @@ main {
   filter: saturate(0.95) contrast(1.05);
 }
 
-.post-meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 2px 0 10px;
-}
-
-.meta-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 5px 9px;
-  background: var(--paper-2);
-  color: var(--ink-2);
-  font-family: var(--mono-font);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.meta-chip svg {
-  color: var(--teal);
-}
-
-.card-tags-line {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 10px;
-}
-
-.hash-chip {
-  color: var(--teal);
-  font-weight: 900;
-}
-
-.tags-text {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  color: var(--teal);
-  font-family: var(--mono-font);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.tag-sep {
-  font-style: normal;
-  color: var(--line-strong);
-}
-
 .post-summary {
   margin: 0 0 12px;
 }
