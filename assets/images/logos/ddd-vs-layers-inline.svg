@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" width="960" height="430" role="img" aria-label="三层架构与 DDD 分层对比：DDD 的领域层是充血的业务模型核心">
+  <rect width="960" height="430" fill="#F6F2E9"/>
+
+  <g font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif">
+    <!-- 左：传统三层 -->
+    <rect x="40" y="52" width="280" height="330" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <rect x="40" y="52" width="280" height="40" fill="#241E14"/>
+    <text x="180" y="78" text-anchor="middle" font-size="15" font-weight="700" fill="#F6F2E9">三层架构</text>
+
+    <rect x="72" y="116" width="216" height="56" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="180" y="140" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">Controller 控制器</text>
+    <text x="180" y="160" text-anchor="middle" font-size="11" fill="#7C7361">接收请求 · 参数校验 · 组装响应</text>
+
+    <path d="M180 172 v14" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M174 180 l6 8 6-8" stroke="#7C7361" stroke-width="1" fill="none"/>
+
+    <rect x="72" y="190" width="216" height="56" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="180" y="214" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">Service 业务逻辑</text>
+    <text x="180" y="234" text-anchor="middle" font-size="11" fill="#7C7361">事务 · 编排 · 规则（常变「事务脚本」）</text>
+
+    <path d="M180 246 v14" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M174 254 l6 8 6-8" stroke="#7C7361" stroke-width="1" fill="none"/>
+
+    <rect x="72" y="264" width="216" height="56" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="180" y="288" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">DAO / Mapper</text>
+    <text x="180" y="308" text-anchor="middle" font-size="11" fill="#7C7361">数据库读写 · 一表一方法</text>
+
+    <text x="180" y="356" text-anchor="middle" font-size="12" fill="#7C7361">模型只有 getter/setter —— 贫血</text>
+
+    <!-- 中间箭头 -->
+    <path d="M330 217 h44" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M366 211 l10 6 -10 6" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <text x="338" y="203" font-size="11" fill="#7C7361">演进</text>
+
+    <!-- 右：DDD 分层 -->
+    <rect x="384" y="52" width="536" height="330" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <rect x="384" y="52" width="536" height="40" fill="#E0A93C"/>
+    <text x="652" y="78" text-anchor="middle" font-size="15" font-weight="700" fill="#241E14">DDD 分层（领域为核心）</text>
+
+    <rect x="412" y="112" width="200" height="72" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="512" y="140" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">用户接口层</text>
+    <text x="512" y="162" text-anchor="middle" font-size="11" fill="#7C7361">REST / RPC / 页面</text>
+
+    <rect x="412" y="200" width="200" height="72" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="512" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">应用层</text>
+    <text x="512" y="250" text-anchor="middle" font-size="11" fill="#7C7361">用例编排 · 事务边界 · 薄</text>
+
+    <rect x="660" y="112" width="232" height="160" fill="#F6F2E9" stroke="#E0A93C" stroke-width="2"/>
+    <text x="776" y="140" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">领域层（核心）</text>
+    <text x="776" y="166" text-anchor="middle" font-size="12" fill="#7C7361">实体 · 值对象 · 聚合</text>
+    <text x="776" y="188" text-anchor="middle" font-size="12" fill="#7C7361">领域服务 · 领域事件</text>
+    <text x="776" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#E0A93C">充血模型：规则住在模型里</text>
+    <text x="776" y="252" text-anchor="middle" font-size="11" fill="#7C7361">依赖倒置：定义仓储接口</text>
+
+    <rect x="412" y="296" width="480" height="60" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="652" y="320" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">基础设施层</text>
+    <text x="652" y="342" text-anchor="middle" font-size="11" fill="#7C7361">实现仓储 · 数据库 · 消息队列 —— 指向领域层，而非相反</text>
+
+    <!-- 内部箭头 -->
+    <path d="M512 184 v16" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M506 194 l6 8 6-8" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M612 236 h48" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M652 230 l10 6 -10 6" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M652 240 h-48" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M604 234 l-10 6 10 6" stroke="#7C7361" stroke-width="1" fill="none"/>
+
+    <text x="652" y="412" text-anchor="middle" font-size="12" fill="#7C7361">DDD 不推翻分层，而是把「业务规则」从 Service 脚本搬进领域模型</text>
+  </g>
+</svg>

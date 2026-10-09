@@ -29,3 +29,6 @@
 - `nana-cover-inline.svg`: local composite cover for the "nana 本地内容应用" article, made from `vue-logo.svg` and `nodejs-logo.svg`.
 - `nana-stack-inline.svg`: local architecture diagram for the "nana 本地内容应用" article.
 - `nana-tunnel-inline.svg`: local Cloudflare quick-tunnel diagram for the "nana 本地内容应用" article.
+- `swe-methods-cover-inline.svg`: local composite cover for the "分层与 DDD、TDD 与 SDD、瀑布与敏捷" article.
+- `ddd-vs-layers-inline.svg`: local architecture comparison diagram for that article.
+- `waterfall-agile-inline.svg`: local process comparison diagram for that article.

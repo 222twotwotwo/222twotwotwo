@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380" role="img" aria-label="瀑布与敏捷对比：瀑布阶段单向流下，敏捷小循环迭代">
+  <rect width="960" height="380" fill="#F6F2E9"/>
+
+  <g font-family="PingFang SC, Microsoft YaHei, Segoe UI, sans-serif">
+    <!-- 左：瀑布 -->
+    <rect x="40" y="44" width="400" height="296" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <rect x="40" y="44" width="400" height="38" fill="#241E14"/>
+    <text x="240" y="69" text-anchor="middle" font-size="14" font-weight="700" fill="#F6F2E9">瀑布：阶段单向流下</text>
+
+    <rect x="76" y="100" width="96" height="40" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="124" y="125" text-anchor="middle" font-size="13" fill="#241E14">需求</text>
+    <rect x="212" y="150" width="96" height="40" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="260" y="175" text-anchor="middle" font-size="13" fill="#241E14">设计</text>
+    <rect x="76" y="200" width="96" height="40" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="124" y="225" text-anchor="middle" font-size="13" fill="#241E14">编码</text>
+    <rect x="212" y="250" width="96" height="40" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="260" y="275" text-anchor="middle" font-size="13" fill="#241E14">测试</text>
+    <rect x="144" y="300" width="96" height="28" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="192" y="319" text-anchor="middle" font-size="13" fill="#241E14">交付维护</text>
+
+    <path d="M172 116 l40 26" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M204 140 l10 4 -4 10" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M236 190 l-40 10" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M198 198 l-10 8 12 2" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M172 236 l40 14" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M204 246 l10 6 -4 10" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M236 290 l-30 10" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M208 298 l-8 10 12 0" stroke="#7C7361" stroke-width="1" fill="none"/>
+
+    <text x="356" y="180" font-size="11" fill="#7C7361">变更回到</text>
+    <text x="356" y="196" font-size="11" fill="#7C7361">上游代价高</text>
+    <path d="M308 270 C344 220 344 150 268 112" stroke="#E0A93C" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+
+    <!-- 右：敏捷 -->
+    <rect x="520" y="44" width="400" height="296" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
+    <rect x="520" y="44" width="400" height="38" fill="#E0A93C"/>
+    <text x="720" y="69" text-anchor="middle" font-size="14" font-weight="700" fill="#241E14">敏捷：小循环迭代</text>
+
+    <rect x="672" y="100" width="96" height="40" fill="#F6F2E9" stroke="#E0A93C" stroke-width="1"/>
+    <text x="720" y="125" text-anchor="middle" font-size="13" fill="#241E14">计划</text>
+    <rect x="756" y="164" width="96" height="40" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="804" y="189" text-anchor="middle" font-size="13" fill="#241E14">开发</text>
+    <rect x="672" y="228" width="96" height="40" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="720" y="253" text-anchor="middle" font-size="13" fill="#241E14">测试</text>
+    <rect x="588" y="164" width="96" height="40" fill="#F6F2E9" stroke="#E5DECF" stroke-width="1"/>
+    <text x="636" y="189" text-anchor="middle" font-size="13" fill="#241E14">评审</text>
+
+    <path d="M748 128 l40 32" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M780 156 l10 4 -4 10" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M784 204 l-40 24" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M746 226 l-10 6 12 2" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M672 244 l-40 -32" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M640 214 l-2 12 10 -4" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M656 164 l40 -28" stroke="#7C7361" stroke-width="1" fill="none"/>
+    <path d="M688 140 l10 -6 -2 12" stroke="#7C7361" stroke-width="1" fill="none"/>
+
+    <text x="720" y="316" text-anchor="middle" font-size="12" fill="#E0A93C" font-weight="600">每轮 1–4 周，结束就交付可用增量</text>
+
+    <text x="480" y="366" text-anchor="middle" font-size="12" fill="#7C7361">需求越确定越适合瀑布，越不确定越适合敏捷——按不确定性选流程</text>
+  </g>
+</svg>

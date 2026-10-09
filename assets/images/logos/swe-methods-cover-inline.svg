@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540" role="img" aria-label="代码如何组织，工作如何推进：DDD 与三层、TDD 与 SDD、瀑布与敏捷">
+  <rect width="960" height="540" fill="#F6F2E9"/>
+
+  <!-- 右侧深色反转区：四组关键词 -->
+  <rect x="592" y="0" width="368" height="540" fill="#241E14"/>
+  <g font-family="Cascadia Mono, Consolas, monospace" text-anchor="left">
+    <text x="640" y="120" font-size="40" font-weight="700" fill="#F6F2E9">DDD</text>
+    <rect x="640" y="136" width="44" height="3" fill="#E0A93C"/>
+    <text x="640" y="176" font-size="12" letter-spacing="2" fill="rgba(246,242,233,0.55)">领域驱动设计</text>
+
+    <text x="640" y="248" font-size="40" font-weight="700" fill="#F6F2E9">TDD / SDD</text>
+    <rect x="640" y="264" width="44" height="3" fill="#E0A93C"/>
+    <text x="640" y="304" font-size="12" letter-spacing="2" fill="rgba(246,242,233,0.55)">先写什么算对</text>
+
+    <text x="640" y="376" font-size="34" font-weight="700" fill="#F6F2E9">瀑布 → 敏捷</text>
+    <rect x="640" y="392" width="44" height="3" fill="#E0A93C"/>
+    <text x="640" y="432" font-size="12" letter-spacing="2" fill="rgba(246,242,233,0.55)">不确定性决定流程</text>
+  </g>
+  <text x="852" y="508" text-anchor="end" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" letter-spacing="3" fill="rgba(246,242,233,0.4)">SOFTWARE ENGINEERING NOTES</text>
+
+  <!-- 左侧文案 -->
+  <rect x="64" y="150" width="44" height="3" fill="#E0A93C"/>
+  <text x="64" y="242" font-family="Noto Serif SC, Source Han Serif SC, Songti SC, SimSun, serif" font-size="46" font-weight="700" fill="#241E14">代码如何组织，</text>
+  <text x="64" y="300" font-family="Noto Serif SC, Source Han Serif SC, Songti SC, SimSun, serif" font-size="46" font-weight="700" fill="#241E14">工作如何推进</text>
+  <text x="66" y="344" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" letter-spacing="3" fill="#7C7361">分层 · DDD · TDD · SDD · 瀑布 · 敏捷</text>
+  <text x="64" y="384" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#7C7361">三组成对出现的软件工程方法论，一次讲清</text>
+</svg>
