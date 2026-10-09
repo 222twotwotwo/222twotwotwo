@@ -1,0 +1,495 @@
+.profile-page {
+  padding: 64px 0 80px;
+}
+
+.profile-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 44px;
+}
+
+.profile-kicker {
+  margin: 0 0 16px;
+  color: var(--teal);
+  font: 600 11px/1.6 var(--mono-font);
+  letter-spacing: 0.12em;
+}
+
+.profile-heading h1 {
+  margin: 0;
+  font: 800 clamp(38px, 4.5vw, 60px)/1.15 var(--display-font);
+  letter-spacing: -0.04em;
+}
+
+.heading-dot {
+  color: var(--teal);
+}
+
+.profile-description {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.profile-portrait {
+  position: relative;
+  flex: none;
+  margin: 0 38px 0 0;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--surface);
+  box-shadow: 0 12px 28px rgba(17, 23, 22, 0.07);
+  transform: rotate(5deg);
+}
+
+.profile-avatar {
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.profile-go {
+  position: absolute;
+  right: -16px;
+  bottom: 2px;
+  width: 76px;
+  height: 48px;
+  padding: 12px 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  object-fit: cover;
+  transform: rotate(-10deg);
+}
+
+.profile-page ~ .site-footer {
+  color: var(--muted);
+}
+
+body:is([data-page="about"], [data-page="friends"]) .site-nav a[aria-current="page"] {
+  background: var(--paper-2);
+  color: var(--teal);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+}
+
+.about-sidebar {
+  position: sticky;
+  top: 108px;
+  min-width: 0;
+  padding-top: 8px;
+}
+
+.about-nav a {
+  display: block;
+  border-left: 1px solid var(--line);
+  padding: 10px 16px;
+  color: var(--muted);
+  font-size: 13px;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.about-nav a:hover,
+.about-nav a:focus-visible {
+  border-left-color: var(--teal);
+  color: var(--teal);
+}
+
+.profile-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.about-content {
+  min-width: 0;
+}
+
+.readme-body {
+  max-width: none;
+  padding: 38px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.readme-body:empty {
+  display: none;
+}
+
+.readme-intro {
+  padding-bottom: 8px;
+}
+
+.readme-intro .readme-name {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font: 700 clamp(21px, 2.5vw, 30px)/1.4 var(--display-font);
+}
+
+.readme-body img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.readme-intro img {
+  margin: 3px 1px;
+}
+
+.readme-body h2 {
+  scroll-margin-top: 110px;
+  margin: 36px 0 18px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  font-size: 24px;
+}
+
+.readme-body h2:target {
+  color: var(--teal);
+}
+
+.readme-body p,
+.readme-body li {
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.readme-body li + li {
+  margin-top: 7px;
+}
+
+.readme-body a {
+  color: var(--teal);
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+
+.readme-body a:hover {
+  text-decoration: underline;
+}
+
+.readme-body table {
+  border: 0;
+}
+
+.readme-body th,
+.readme-body td {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 12px;
+  font-size: 13px;
+}
+
+.readme-body th {
+  background: var(--paper);
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.readme-body tr:last-child td {
+  border-bottom: 0;
+}
+
+.readme-body td:first-child {
+  width: 26%;
+  font-weight: 600;
+}
+
+.friends-heading-mark {
+  width: 100px;
+  height: 100px;
+  margin-right: 48px;
+  color: var(--teal);
+}
+
+.friends-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 28px;
+  align-items: start;
+}
+
+.friend-grid {
+  min-width: 0;
+  scroll-margin-top: 110px;
+}
+
+.friend-empty {
+  display: flex;
+  min-height: 430px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.friend-empty h2 {
+  margin: 0;
+  color: var(--muted);
+  font: 500 19px/1.5 var(--display-font);
+  letter-spacing: 0.16em;
+}
+
+.friend-connection {
+  display: flex;
+  align-items: center;
+}
+
+.connection-node {
+  display: grid;
+  width: 82px;
+  height: 82px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--paper);
+  transform: rotate(-8deg);
+}
+
+.connection-node img {
+  border-radius: 16px;
+}
+
+.connection-line {
+  width: 64px;
+  border-top: 1px dashed var(--line-strong);
+}
+
+.connection-next {
+  color: var(--teal);
+  background: var(--surface);
+  border-style: dashed;
+  transform: rotate(8deg);
+}
+
+.friend-invite {
+  padding: 30px;
+  border-radius: 20px;
+  background: var(--teal);
+  color: var(--surface);
+}
+
+.friend-invite h2 {
+  margin: 24px 0 10px;
+  font: 600 25px/1.4 var(--display-font);
+}
+
+.friend-invite p {
+  margin: 0;
+  color: var(--paper-2);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.invite-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+  margin-top: 28px;
+  padding: 12px 16px;
+  border: 1px solid var(--surface);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.invite-btn:hover {
+  background: transparent;
+  color: var(--surface);
+}
+
+.friend-site-info {
+  padding: 26px 8px 0;
+}
+
+.friend-site-info h2 {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.friend-site-info dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.friend-site-info dl > div {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.friend-site-info dt {
+  color: var(--muted);
+}
+
+.friend-site-info dd {
+  margin: 0;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.friend-site-info a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 980px) {
+  .about-layout {
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .readme-body {
+    padding: 28px;
+  }
+
+  .friends-layout {
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .profile-page {
+    padding: 38px 0 52px;
+  }
+
+  .profile-heading {
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .profile-kicker {
+    font-size: 9px;
+    letter-spacing: 0.06em;
+  }
+
+  .profile-description {
+    margin-top: 16px;
+    font-size: 13px;
+  }
+
+  .profile-portrait {
+    margin: 20px 8px 0 0;
+    padding: 5px;
+    border-radius: 18px;
+  }
+
+  .profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 13px;
+  }
+
+  .profile-go {
+    width: 48px;
+    height: 30px;
+    right: -8px;
+    bottom: -8px;
+    padding: 7px;
+    border-radius: 8px;
+  }
+
+  .about-layout,
+  .friends-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-sidebar {
+    position: static;
+    padding: 0;
+  }
+
+  .about-nav .profile-kicker {
+    margin-bottom: 10px;
+  }
+
+  #aboutNavLinks {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .about-nav a {
+    padding: 4px 0;
+    border-left: 0;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .profile-source {
+    margin-top: 18px;
+  }
+
+  .readme-body {
+    padding: 24px 18px;
+    border-radius: 14px;
+  }
+
+  .readme-body h2,
+  .friend-grid {
+    scroll-margin-top: 180px;
+  }
+
+  .readme-body h2 {
+    font-size: 22px;
+  }
+
+  .readme-body th,
+  .readme-body td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .readme-body table {
+    min-width: 480px;
+  }
+
+  .readme-body img[width="48%"] {
+    width: 100%;
+  }
+
+  .friends-heading-mark {
+    width: 58px;
+    height: 58px;
+    flex: none;
+    margin: 26px 6px 0 0;
+  }
+
+  .friend-empty {
+    min-height: 280px;
+    gap: 26px;
+    border-radius: 16px;
+  }
+
+  .friend-invite {
+    padding: 26px;
+    border-radius: 16px;
+  }
+}

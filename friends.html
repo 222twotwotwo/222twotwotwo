@@ -9,6 +9,7 @@
     />
     <title>友情链接 | 222twotwotwo</title>
     <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/profile-pages.css" />
   </head>
   <body data-page="friends">
     <a class="skip-link" href="#friends-list">跳到友链列表</a>
@@ -30,44 +31,57 @@
       </nav>
     </header>
 
-    <main>
-      <section class="projects-section" aria-labelledby="friends-title">
-        <div class="section-heading">
-          <div class="friends-head">
-            <span class="friends-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+    <main class="profile-page">
+      <section aria-labelledby="friends-title">
+        <header class="profile-heading">
+          <div>
+            <p class="profile-kicker">PEOPLE & CONNECTIONS</p>
+            <h1 id="friends-title">友情链接<span class="heading-dot">.</span></h1>
+            <p class="profile-description">这里是我的朋友们，<br />志同道合的创作者和探索者。</p>
+          </div>
+          <svg class="friends-heading-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" aria-hidden="true">
+            <rect x="12" y="34" width="48" height="30" rx="15" transform="rotate(-35 36 49)" />
+            <rect x="40" y="34" width="48" height="30" rx="15" transform="rotate(-35 64 49)" />
+          </svg>
+        </header>
+
+        <div class="friends-layout">
+          <div id="friends-list" class="friend-grid" tabindex="-1">
+            <div class="friend-empty">
+              <div class="friend-connection" aria-hidden="true">
+                <span class="connection-node"><img src="./assets/images/avatar.png" alt="" width="64" height="64" /></span>
+                <span class="connection-line"></span>
+                <span class="connection-node connection-next">
+                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
+                </span>
+              </div>
+              <h2>虚位以待</h2>
+            </div>
+          </div>
+
+          <aside class="friend-sidebar" aria-label="交换友链">
+            <div class="friend-invite">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 3 3 10l7 4 4 7 7-18ZM10 14 21 3" />
               </svg>
-            </span>
-            <h2 id="friends-title">友情链接</h2>
-          </div>
-        </div>
-        <p class="friends-note">这里是我的朋友们，志同道合的创作者和探索者。</p>
-
-        <div id="friends-list" class="friend-grid">
-          <div class="friend-empty">
-            <strong>虚位以待</strong>
-          </div>
-        </div>
-
-        <div class="friend-invite">
-          <span class="friends-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-            </svg>
-          </span>
-          <div class="friend-invite-text">
-            <strong>想交换友链？</strong>
-            <p>欢迎通过 GitHub Issue 联系我。</p>
-          </div>
-          <a class="invite-btn" href="https://github.com/222twotwotwo/222twotwotwo/issues/new" target="_blank" rel="noopener">
-            提交申请
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg>
-          </a>
+              <h2>想交换友链？</h2>
+              <p>欢迎通过 GitHub Issue 联系我，<br />留下博客名称、地址和一句简介。</p>
+              <a class="invite-btn" href="https://github.com/222twotwotwo/222twotwotwo/issues/new" target="_blank" rel="noopener">
+                提交申请
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
+              </a>
+            </div>
+            <section class="friend-site-info" aria-labelledby="site-info-title">
+              <h2 id="site-info-title">本站信息</h2>
+              <dl>
+                <div><dt>名称</dt><dd>222twotwotwo</dd></div>
+                <div><dt>地址</dt><dd><a href="https://222twotwotwo.github.io/222twotwotwo/">222twotwotwo.github.io/222twotwotwo/</a></dd></div>
+                <div><dt>简介</dt><dd>记录 Go 后端、开源实践与 AI 工程化。</dd></div>
+              </dl>
+            </section>
+          </aside>
         </div>
       </section>
     </main>

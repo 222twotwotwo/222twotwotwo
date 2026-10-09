@@ -9,6 +9,7 @@
     />
     <title>关于 | 222twotwotwo</title>
     <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/profile-pages.css" />
   </head>
   <body data-page="about">
     <a class="skip-link" href="#aboutBody">跳到关于内容</a>
@@ -30,21 +31,37 @@
       </nav>
     </header>
 
-    <main>
-      <section class="projects-section" aria-labelledby="about-title">
-        <div class="section-heading">
+    <main class="profile-page">
+      <section aria-labelledby="about-title">
+        <header class="profile-heading">
           <div>
-            <h2 id="about-title">关于</h2>
+            <p class="profile-kicker">GO · OPEN SOURCE · NOTES</p>
+            <h1 id="about-title">关于我<span class="heading-dot">.</span></h1>
+            <p class="profile-description">写代码，也记录思考。<br />这里是我的技术栈、开源实践和持续探索的方向。</p>
           </div>
-          <a id="readmeSource" class="opensource-link" href="https://github.com/222twotwotwo/222twotwotwo/blob/main/README.md" target="_blank" rel="noopener">
-            在 GitHub 查看
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg>
-          </a>
+          <div class="profile-portrait">
+            <img class="profile-avatar" src="./assets/images/avatar.png" alt="222twotwotwo 头像" width="144" height="144" />
+            <img class="profile-go" src="./assets/images/logos/go-logo.svg" alt="Go" width="58" height="28" />
+          </div>
+        </header>
+        <div class="about-layout">
+          <aside class="about-sidebar">
+            <nav id="aboutNav" class="about-nav" aria-label="关于页目录" hidden>
+              <p class="profile-kicker">本页内容</p>
+              <div id="aboutNavLinks"></div>
+            </nav>
+            <a id="readmeSource" class="profile-source" href="https://github.com/222twotwotwo/222twotwotwo/blob/main/README.md" target="_blank" rel="noopener">
+              在 GitHub 查看
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" />
+              </svg>
+            </a>
+          </aside>
+          <div class="about-content">
+            <p id="contentStatus" class="content-status" hidden></p>
+            <div id="aboutBody" class="post-body readme-body" aria-live="polite"></div>
+          </div>
         </div>
-        <p id="contentStatus" class="content-status" hidden></p>
-        <div id="aboutBody" class="post-body readme-body" aria-live="polite"></div>
       </section>
     </main>
 

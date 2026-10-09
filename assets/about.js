@@ -28,6 +28,34 @@ async function loadAbout() {
       const destination = languages.get(link.href);
       if (destination) link.href = destination;
     });
+
+    const intro = target.querySelector(":scope > div[align='center']");
+    if (intro) {
+      intro.classList.add("readme-intro");
+      const title = intro.querySelector("h1");
+      if (title) {
+        const name = document.createElement("p");
+        name.className = "readme-name";
+        name.textContent = title.textContent;
+        title.replaceWith(name);
+      }
+    }
+
+    const navigation = document.querySelector("#aboutNavLinks");
+    target.querySelectorAll(":scope > h2").forEach((heading, index) => {
+      heading.id = `about-section-${index + 1}`;
+      const link = document.createElement("a");
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent;
+      navigation.appendChild(link);
+    });
+    document.querySelector("#aboutNav").hidden = !navigation.childElementCount;
+
+    target.querySelectorAll('img[src^="https://github-profile-summary-cards.vercel.app/"]').forEach((image) => {
+      const url = new URL(image.src);
+      url.searchParams.set("theme", "github");
+      image.src = url.href;
+    });
     status.hidden = true;
     status.textContent = "";
   } catch (error) {
