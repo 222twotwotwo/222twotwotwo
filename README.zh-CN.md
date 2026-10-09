@@ -38,16 +38,6 @@
 
 [![Skills](https://skills.syvixor.com/api/icons?perline=10&i=goland,vscode,github,gitlab,githubactions,leetcode,docker,codex,deepseek,apifox)](https://github.com/syvixor/skills-icons)
 
-## Focus Areas
-
-| 方向 | 我在关注什么 |
-| --- | --- |
-| Go 后端 | 高性能服务、工程化代码组织、测试与可维护性 |
-| 微服务与 RPC | Dubbo / Seata 生态、服务治理、事务与网关能力 |
-| 云原生网关 | HTTP / gRPC / Dubbo 协议接入、代理、配置与扩展机制 |
-| AI 工程化 | AI Agent、MCP、代码知识图谱、自动化 Code Review |
-| 学习沉淀 | 技术笔记、项目复盘、可复用开发方法论 |
-
 ## Selected Repositories
 
 | Repository | Language | Description |

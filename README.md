@@ -38,16 +38,6 @@
 
 [![Skills](https://skills.syvixor.com/api/icons?perline=10&i=goland,vscode,github,gitlab,githubactions,leetcode,docker,codex,deepseek,apifox)](https://github.com/syvixor/skills-icons)
 
-## Focus Areas
-
-| Area | What I Focus On |
-| --- | --- |
-| Go backend | High-performance services, maintainable architecture, testing, and engineering discipline |
-| Microservices and RPC | Dubbo / Seata ecosystem, service governance, distributed transactions, and gateway capabilities |
-| Cloud-native gateways | HTTP / gRPC / Dubbo protocol integration, proxying, configuration, and extensibility |
-| AI engineering | AI agents, MCP, code knowledge graphs, and automated code review |
-| Knowledge building | Technical notes, project retrospectives, and reusable development methods |
-
 ## Selected Repositories
 
 | Repository | Language | Description |
@@ -56,20 +46,6 @@
 | [dubbo-go-pixiu](https://github.com/222twotwotwo/dubbo-go-pixiu) | Go | A dubbo-go based proxy gateway service focused on HTTP / gRPC / Dubbo integration |
 | [dubbo-go](https://github.com/222twotwotwo/dubbo-go) | Go | Apache Dubbo implementation in Go, focused on RPC framework internals and service governance |
 | [powercontext](https://github.com/oceanbase/powercontext) | Python | An open-source memory and context system for AI applications |
-
-## Open Source Contributions
-
-Recent contributions cover [PowerContext](https://github.com/oceanbase/powercontext) memory and context features, connection and lifecycle fixes in [Apache Dubbo Getty](https://github.com/apache/dubbo-getty) and [Getty](https://github.com/AlexStocks/getty), gateway fixes and tests in [Dubbo Go Pixiu](https://github.com/apache/dubbo-go-pixiu) and its samples, plus tooling and asset improvements in [AutoToon](https://github.com/sykesP42/AutoToon).
-
-## Open Source Interests
-
-I often read and follow open source projects in these areas:
-
-- Apache Dubbo / dubbo-go / dubbo-go-pixiu
-- Apache Seata / incubator-seata-go
-- Go microservice frameworks and cloud-native infrastructure
-- MCP servers, AI agents, memory and context systems, and developer tools
-- Automated code review, engineering productivity, and personal knowledge management
 
 ## GitHub Stats
 
