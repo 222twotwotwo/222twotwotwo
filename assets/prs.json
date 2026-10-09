@@ -1,0 +1,186 @@
+{
+  "generatedAt": "2026-10-09",
+  "profile": "https://github.com/222twotwotwo",
+  "prs": [
+    {
+      "org": "oceanbase",
+      "repo": "powercontext",
+      "number": 1746,
+      "title": "feat(memory): enforce capacity budgets for long-lived Memories",
+      "url": "https://github.com/oceanbase/powercontext/pull/1746",
+      "state": "merged",
+      "createdAt": "2026-09-26"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 144,
+      "title": "Fix/quality",
+      "url": "https://github.com/apache/dubbo-getty/pull/144",
+      "state": "merged",
+      "createdAt": "2026-08-26"
+    },
+    {
+      "org": "oceanbase",
+      "repo": "powercontext",
+      "number": 1326,
+      "title": "Fix/windows hook unicode prompts",
+      "url": "https://github.com/oceanbase/powercontext/pull/1326",
+      "state": "merged",
+      "createdAt": "2026-08-23"
+    },
+    {
+      "org": "oceanbase",
+      "repo": "powercontext",
+      "number": 1316,
+      "title": "fix: handle windows hook unicode prompts",
+      "url": "https://github.com/oceanbase/powercontext/pull/1316",
+      "state": "closed",
+      "createdAt": "2026-08-22"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 141,
+      "title": "Fix client shutdown deadlock",
+      "url": "https://github.com/apache/dubbo-getty/pull/141",
+      "state": "closed",
+      "createdAt": "2026-08-14"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 142,
+      "title": "Fix client shutdown deadlock",
+      "url": "https://github.com/apache/dubbo-getty/pull/142",
+      "state": "merged",
+      "createdAt": "2026-08-14"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 140,
+      "title": "fix: reconnect attempts after successful pool fill",
+      "url": "https://github.com/apache/dubbo-getty/pull/140",
+      "state": "merged",
+      "createdAt": "2026-08-07"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 139,
+      "title": "udpReadBufferLenfunc and remove dead branch",
+      "url": "https://github.com/apache/dubbo-getty/pull/139",
+      "state": "merged",
+      "createdAt": "2026-08-03"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 138,
+      "title": "Fix  wss event loop panics on normal server shutdown/error return paths",
+      "url": "https://github.com/apache/dubbo-getty/pull/138",
+      "state": "merged",
+      "createdAt": "2026-07-23"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 137,
+      "title": "Fix nil listener callback",
+      "url": "https://github.com/apache/dubbo-getty/pull/137",
+      "state": "merged",
+      "createdAt": "2026-07-19"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 136,
+      "title": "fix: close websocket self-connect connections",
+      "url": "https://github.com/apache/dubbo-getty/pull/136",
+      "state": "merged",
+      "createdAt": "2026-07-17"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 133,
+      "title": "[FIX] fix nil listener cleanup callbacks",
+      "url": "https://github.com/apache/dubbo-getty/pull/133",
+      "state": "closed",
+      "createdAt": "2026-07-16"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "number": 135,
+      "title": "fix modernize fmt flag",
+      "url": "https://github.com/apache/dubbo-getty/pull/135",
+      "state": "merged",
+      "createdAt": "2026-07-16"
+    },
+    {
+      "org": "apache",
+      "repo": "incubator-seata-go",
+      "number": 1132,
+      "title": "fix:stores nil for unimplemented registry types",
+      "url": "https://github.com/apache/incubator-seata-go/pull/1132",
+      "state": "closed",
+      "createdAt": "2026-07-04"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-go-pixiu",
+      "number": 947,
+      "title": "add: Write unit tests",
+      "url": "https://github.com/apache/dubbo-go-pixiu/pull/947",
+      "state": "merged",
+      "createdAt": "2026-05-26"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-go-pixiu-samples",
+      "number": 159,
+      "title": "fix: resolve golangci-lint errcheck & format issues in dubbohttpproxy http server",
+      "url": "https://github.com/apache/dubbo-go-pixiu-samples/pull/159",
+      "state": "merged",
+      "createdAt": "2026-05-25"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-go-pixiu-samples",
+      "number": 151,
+      "title": "fix: Add warmup request body for health check",
+      "url": "https://github.com/apache/dubbo-go-pixiu-samples/pull/151",
+      "state": "merged",
+      "createdAt": "2026-05-16"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-go-pixiu-samples",
+      "number": 152,
+      "title": "fix: Update README with SAML client signature instructions and config",
+      "url": "https://github.com/apache/dubbo-go-pixiu-samples/pull/152",
+      "state": "merged",
+      "createdAt": "2026-05-16"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-go-pixiu-samples",
+      "number": 153,
+      "title": "Fix dubbohttpproxy/server/http",
+      "url": "https://github.com/apache/dubbo-go-pixiu-samples/pull/153",
+      "state": "merged",
+      "createdAt": "2026-05-16"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-go-pixiu",
+      "number": 922,
+      "title": "fix: Router method wildcard no longer matches non-HTTP route methods after snapshot refactor",
+      "url": "https://github.com/apache/dubbo-go-pixiu/pull/922",
+      "state": "merged",
+      "createdAt": "2026-05-05"
+    }
+  ]
+}

@@ -23,7 +23,7 @@
       </a>
       <nav class="site-nav" aria-label="主导航">
         <a href="./">文章</a>
-        <a href="#projects">项目</a>
+        <a href="#opensource">开源</a>
         <a href="#contact">联系</a>
       </nav>
     </header>
@@ -56,34 +56,20 @@
         </section>
       </section>
 
-      <section id="projects" class="projects-section" aria-labelledby="projects-title">
+      <section id="opensource" class="projects-section" aria-labelledby="opensource-title">
         <div class="section-heading">
           <div>
-            <h2 id="projects-title">项目</h2>
+            <h2 id="opensource-title">开源</h2>
           </div>
-        </div>
-        <div class="project-grid">
-          <a class="project-card" href="https://github.com/222twotwotwo/incubator-seata-go">
-            <span>Go</span>
-            <strong>incubator-seata-go</strong>
-            <p>Apache Seata 的 Go 实现相关学习与贡献关注。</p>
-          </a>
-          <a class="project-card" href="https://github.com/222twotwotwo/dubbo-go-pixiu">
-            <span>Go</span>
-            <strong>dubbo-go-pixiu</strong>
-            <p>基于 dubbo-go 的代理网关服务，关注 HTTP / gRPC / Dubbo 接入。</p>
-          </a>
-          <a class="project-card" href="https://github.com/222twotwotwo/dubbo-go">
-            <span>Go</span>
-            <strong>dubbo-go</strong>
-            <p>Apache Dubbo Go 实现，关注 RPC 框架与服务治理。</p>
-          </a>
-          <a class="project-card" href="https://github.com/222twotwotwo/codegraph">
-            <span>TypeScript</span>
-            <strong>codegraph</strong>
-            <p>面向 AI 编程工具的本地代码知识图谱。</p>
+          <a class="opensource-link" href="https://github.com/222twotwotwo" target="_blank" rel="noopener">
+            GitHub 主页
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
           </a>
         </div>
+        <p class="opensource-note">Apache 与 OceanBase 的 PR 贡献记录（同步于 2026-10-09）。</p>
+        <div id="prList" class="pr-list" aria-live="polite"></div>
       </section>
     </main>
 
