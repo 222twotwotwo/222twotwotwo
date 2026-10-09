@@ -5,7 +5,6 @@ category: 软件工程
 tags: DDD, 架构, TDD, SDD, 敏捷开发
 readTime: 11 分钟阅读
 summary: 这些名词经常捆在一起出现，但回答的是三个不同的问题：分层与 DDD 回答「代码怎么组织」，TDD 与 SDD 回答「先写什么才算对」，瀑布与敏捷回答「时间怎么安排」。这篇按这三组对照把它们一次讲清。
-cover: ../images/logos/swe-methods-cover-inline.svg
 ---
 
 面试、文档、技术博客里，这些词总是成串出现，好像必须全用上才算专业。其实它们回答的是三个不同的问题，混着聊只会越聊越乱：
