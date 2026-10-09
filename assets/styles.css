@@ -522,6 +522,7 @@ main {
   padding: 0;
   background: var(--paper-2);
   object-fit: cover;
+  object-position: left center;
   filter: saturate(0.95) contrast(1.05);
 }
 
