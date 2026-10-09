@@ -683,7 +683,9 @@ body[data-page="post"] .post-body {
 }
 
 .post-body {
+  min-width: 0;
   max-width: 780px;
+  overflow-wrap: anywhere;
 }
 
 .post-body h2,
@@ -896,6 +898,7 @@ body[data-page="post"] .post-body {
 
 .friends-icon {
   display: inline-flex;
+  flex: none;
   align-items: center;
   justify-content: center;
   width: 40px;
@@ -1138,20 +1141,32 @@ body[data-page="post"] .post-body {
 }
 
 .readme-body img {
+  display: inline-block;
   max-width: 100%;
   height: auto;
+  vertical-align: middle;
 }
 
-.readme-body table {
-  width: 100%;
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
   margin: 20px 0;
+}
+
+.table-scroll:focus-visible {
+  outline: 3px solid rgba(0, 173, 216, 0.6);
+  outline-offset: 3px;
+}
+
+.post-body table {
+  width: 100%;
   border: 1px solid var(--line);
   border-collapse: collapse;
   background: #fff;
 }
 
-.readme-body th,
-.readme-body td {
+.post-body th,
+.post-body td {
   border: 1px solid var(--line);
   padding: 10px 14px;
   color: #2f403d;
@@ -1160,20 +1175,15 @@ body[data-page="post"] .post-body {
   vertical-align: top;
 }
 
-.readme-body th {
+.post-body th {
   background: var(--paper-2);
   font-family: var(--mono-font);
   font-size: 13px;
 }
 
-.readme-body hr {
+.post-body hr {
   margin: 30px 0;
   border: 0;
   border-top: 1px solid var(--line);
-}
-
-.readme-body a {
-  color: var(--blue);
-  font-weight: 800;
 }
 

@@ -1,8 +1,10 @@
+import { escapeHtml, resolveAssetPath } from "./utils.mjs";
+import { renderMarkdown } from "./markdown.mjs";
+
 (function () {
   const CONTENT_INDEX = "./content-index.json";
   const PAPER_INDEX = "./assets/paper/index.json";
   const isPostPage = document.body.dataset.page === "post";
-  const isOpensourcePage = document.body.dataset.page === "opensource";
   const siteTitle = "222twotwotwo";
   const state = {
     activeTag: "全部",
@@ -17,8 +19,7 @@
     postCount: document.querySelector("#postCount"),
     tagFilters: document.querySelector("#tagFilters"),
     searchInput: document.querySelector("#searchInput"),
-    status: document.querySelector("#contentStatus"),
-    prList: document.querySelector("#prList")
+    status: document.querySelector("#contentStatus")
   };
 
   function postHref(slug) {
@@ -53,15 +54,6 @@
     return path.split("/").pop().replace(/\.md$/i, "");
   }
 
-  function escapeHtml(value) {
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
   function parseFrontMatter(markdown) {
     const match = markdown.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
     if (!match) {
@@ -81,134 +73,6 @@
       body: markdown.slice(match[0].length),
       meta
     };
-  }
-
-  function resolveAssetPath(path, sourcePath) {
-    if (!path || /^(https?:|mailto:|#|\/)/i.test(path)) {
-      return path;
-    }
-
-    return new URL(path, new URL(sourcePath, window.location.href)).href;
-  }
-
-  function renderInline(text, sourcePath) {
-    let html = escapeHtml(text);
-
-    html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
-    html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-    html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
-    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, label, href) {
-      const resolved = resolveAssetPath(href.trim(), sourcePath);
-      return `<a href="${escapeHtml(resolved)}">${label}</a>`;
-    });
-
-    return html;
-  }
-
-  function renderMedia(line, sourcePath) {
-    const video = line.match(/^!\[video:([^\]]*)\]\(([^)]+)\)$/i);
-    if (video) {
-      const caption = video[1].trim();
-      const src = resolveAssetPath(video[2].trim(), sourcePath);
-      return `<figure class="media-frame"><video controls preload="metadata" src="${escapeHtml(src)}"></video>${
-        caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ""
-      }</figure>`;
-    }
-
-    const image = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
-    if (image) {
-      const alt = image[1].trim();
-      const src = resolveAssetPath(image[2].trim(), sourcePath);
-      return `<figure class="media-frame"><img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />${
-        alt ? `<figcaption>${escapeHtml(alt)}</figcaption>` : ""
-      }</figure>`;
-    }
-
-    return "";
-  }
-
-  function renderMarkdown(markdown, sourcePath) {
-    const lines = markdown.replace(/\r\n/g, "\n").split("\n");
-    const output = [];
-    let index = 0;
-
-    while (index < lines.length) {
-      const line = lines[index];
-      const trimmed = line.trim();
-
-      if (!trimmed) {
-        index += 1;
-        continue;
-      }
-
-      const fence = trimmed.match(/^```([A-Za-z0-9_-]+)?$/);
-      if (fence) {
-        const language = fence[1] || "text";
-        const code = [];
-        index += 1;
-        while (index < lines.length && !lines[index].trim().startsWith("```")) {
-          code.push(lines[index]);
-          index += 1;
-        }
-        index += 1;
-        output.push(
-          `<pre class="code-block" data-language="${escapeHtml(language)}"><code>${escapeHtml(code.join("\n"))}</code></pre>`
-        );
-        continue;
-      }
-
-      const media = renderMedia(trimmed, sourcePath);
-      if (media) {
-        output.push(media);
-        index += 1;
-        continue;
-      }
-
-      const heading = trimmed.match(/^(#{2,4})\s+(.+)$/);
-      if (heading) {
-        const level = heading[1].length;
-        output.push(`<h${level}>${renderInline(heading[2], sourcePath)}</h${level}>`);
-        index += 1;
-        continue;
-      }
-
-      if (trimmed.startsWith("> ")) {
-        const quote = [];
-        while (index < lines.length && lines[index].trim().startsWith("> ")) {
-          quote.push(lines[index].trim().replace(/^>\s?/, ""));
-          index += 1;
-        }
-        output.push(`<blockquote>${quote.map((item) => `<p>${renderInline(item, sourcePath)}</p>`).join("")}</blockquote>`);
-        continue;
-      }
-
-      if (/^[-*]\s+/.test(trimmed)) {
-        const items = [];
-        while (index < lines.length && /^[-*]\s+/.test(lines[index].trim())) {
-          items.push(lines[index].trim().replace(/^[-*]\s+/, ""));
-          index += 1;
-        }
-        output.push(`<ul>${items.map((item) => `<li>${renderInline(item, sourcePath)}</li>`).join("")}</ul>`);
-        continue;
-      }
-
-      const paragraph = [];
-      while (
-        index < lines.length &&
-        lines[index].trim() &&
-        !/^(#{2,4})\s+/.test(lines[index].trim()) &&
-        !/^[-*]\s+/.test(lines[index].trim()) &&
-        !lines[index].trim().startsWith("> ") &&
-        !lines[index].trim().startsWith("```") &&
-        !renderMedia(lines[index].trim(), sourcePath)
-      ) {
-        paragraph.push(lines[index].trim());
-        index += 1;
-      }
-      output.push(`<p>${renderInline(paragraph.join(" "), sourcePath)}</p>`);
-    }
-
-    return output.join("\n");
   }
 
   function estimateReadTime(markdown) {
@@ -237,8 +101,7 @@
       readTime: meta.readTime || estimateReadTime(parsed.body),
       summary: meta.summary || parsed.body.split(/\n\n/)[0].replace(/[#>*`-]/g, "").trim(),
       cover: meta.cover ? resolveAssetPath(meta.cover, sourcePath) : "",
-      markdown: parsed.body,
-      html: renderMarkdown(parsed.body, sourcePath)
+      markdown: parsed.body
     };
   }
 
@@ -484,7 +347,7 @@
           </div>
         </header>
         ${post.cover ? `<img class="article-cover" src="${escapeHtml(post.cover)}" alt="" />` : ""}
-        <div class="post-body">${post.html}</div>
+        <div class="post-body">${renderMarkdown(post.markdown, post.sourcePath)}</div>
       </div>
     `;
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -560,31 +423,6 @@
     renderPostList();
   });
 
-  async function loadPullRequests() {
-    if (!els.prList) return;
-    try {
-      const response = await fetch("./assets/prs.json");
-      if (!response.ok) throw new Error("PR 数据加载失败 " + response.status);
-      const data = await response.json();
-      const stateLabel = { merged: "已合并", open: "进行中", closed: "已关闭" };
-      els.prList.innerHTML = data.prs
-        .filter((pr) => pr.state !== "closed")
-        .map(
-          (pr) => `
-        <a class="pr-item" href="${escapeHtml(pr.url)}" target="_blank" rel="noopener">
-          <span class="pr-state pr-state-${escapeHtml(pr.state)}">${escapeHtml(stateLabel[pr.state] || pr.state)}</span>
-          <span class="pr-repo">${escapeHtml(pr.repo)}</span>
-          <span class="pr-title">${escapeHtml(pr.title)}</span>
-          <time class="pr-date" datetime="${escapeHtml(pr.createdAt)}">${escapeHtml(pr.createdAt)}</time>
-        </a>`
-        )
-        .join("");
-    } catch (error) {
-      console.error(error);
-      els.prList.innerHTML = `<p class="empty-state">PR 记录加载失败，请访问 GitHub 主页查看。</p>`;
-    }
-  }
-
   const backTopButton = document.querySelector("#backTop");
   if (backTopButton) {
     const toggleBackTop = () => {
@@ -597,22 +435,18 @@
     });
   }
 
-  if (isOpensourcePage) {
-    loadPullRequests();
-  } else {
-    loadPosts().catch((error) => {
-      console.error(error);
-      state.ready = false;
-      if (els.postCount) {
-        els.postCount.textContent = "离线";
-      }
-      if (els.postList) {
-        els.postList.innerHTML = "";
-      }
-      setStatus(
-        "文章加载失败。请通过本地静态服务器或 GitHub Pages 打开页面，而不是直接双击 file://。",
-        "error"
-      );
-    });
-  }
+  loadPosts().catch((error) => {
+    console.error(error);
+    state.ready = false;
+    if (els.postCount) {
+      els.postCount.textContent = "离线";
+    }
+    if (els.postList) {
+      els.postList.innerHTML = "";
+    }
+    setStatus(
+      "文章加载失败。请通过本地静态服务器或 GitHub Pages 打开页面，而不是直接双击 file://。",
+      "error"
+    );
+  });
 })();
