@@ -406,11 +406,6 @@
       card.innerHTML = `
         <a class="post-hitbox" href="${postHref(post.slug)}" aria-label="阅读《${escapeHtml(post.title)}》"></a>
         <div class="post-card-main">
-          <div class="post-meta">
-            <span>${escapeHtml(post.category)}</span>
-            <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
-            <span>${escapeHtml(post.readTime)}</span>
-          </div>
           <h3><a href="${postHref(post.slug)}">${escapeHtml(post.title)}</a></h3>
           <p>${escapeHtml(post.summary)}</p>
           <div class="post-tags">
