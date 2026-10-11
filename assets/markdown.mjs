@@ -1,4 +1,5 @@
 import { Marked, Renderer } from "./vendor/marked.mjs";
+import hljs from "./highlight.mjs";
 import { escapeHtml, resolveAssetPath } from "./utils.mjs";
 
 export function renderMarkdown(markdown, sourcePath, { allowHtml = false } = {}) {
@@ -32,8 +33,14 @@ export function renderMarkdown(markdown, sourcePath, { allowHtml = false } = {})
     return Renderer.prototype.paragraph.call(this, token);
   };
 
-  renderer.code = ({ text, lang }) =>
-    `<pre class="code-block" data-language="${escapeHtml(lang?.split(/\s+/)[0] || "text")}"><code>${escapeHtml(text)}</code></pre>\n`;
+  renderer.code = ({ text, lang }) => {
+    const language = lang?.trim().split(/\s+/)[0].toLowerCase() || "text";
+    const supported = hljs.getLanguage(language);
+    const code = supported
+      ? hljs.highlight(text, { language, ignoreIllegals: true }).value
+      : escapeHtml(text);
+    return `<pre class="code-block" data-language="${escapeHtml(language)}"><code${supported ? ' class="hljs"' : ""}>${code}</code></pre>\n`;
+  };
 
   renderer.table = function (token) {
     return `<div class="table-scroll" tabindex="0" role="region" aria-label="表格（可横向滚动）">${Renderer.prototype.table.call(this, token)}</div>\n`;

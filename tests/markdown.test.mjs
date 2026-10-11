@@ -46,5 +46,40 @@ test("tables, ordered lists, and incomplete Markdown do not lose content or hang
   assert.match(html, /<table>/);
   assert.match(html, /<ol>/);
   assert.match(html, /plain line/);
-  assert.match(html, /const x = 1;/);
+  assert.match(html.replace(/<\/?span\b[^>]*>/g, ""), /const x = 1;/);
+});
+
+test("article code languages and aliases receive syntax highlighting", () => {
+  for (const [language, code, token] of [
+    ["go", 'package main\nfunc main() { println("hello") }', "keyword"],
+    ["golang", "var answer int = 42", "keyword"],
+    ["js", 'const message = "hello";', "keyword"],
+    ["JavaScript title=example", 'const message = "hello";', "keyword"],
+    ["bash", 'echo "$HOME" # home directory', "built_in"],
+    ["sh", 'echo "$HOME"', "variable"],
+    ["powershell", 'Get-Process | Where-Object { $_.Name -eq "node" }', "built_in"],
+    ["json", '{"enabled": true, "count": 42}', "attr"],
+    ["ini", '[wsl2]\nnetworkingMode=mirrored', "section"],
+    ["api", 'service user-api {\n    @handler Detail\n    get /user/:id (Request) returns (Response)\n}', "meta"]
+  ]) {
+    const html = renderMarkdown(`\`\`\`${language}\n${code}\n\`\`\``, source);
+    assert.match(html, /<code class="hljs">/, language);
+    assert.match(html, new RegExp(`class="hljs-${token}"`), language);
+  }
+});
+
+test("plain text, unspecified languages, and unknown languages stay literal", () => {
+  for (const language of ["text", "plaintext", "", "unknown-language", 'unknown" onclick="alert(1)']) {
+    const code = '<script>alert("hello")</script> & text';
+    const html = renderMarkdown(`\`\`\`${language}\n${code}\n\`\`\``, source);
+    assert.doesNotMatch(html, /<span|<script| onclick=/);
+    assert.match(html, /<code>&lt;script&gt;alert\(&quot;hello&quot;\)&lt;\/script&gt; &amp; text<\/code>/);
+  }
+});
+
+test("highlighted code escapes HTML and preserves code text", () => {
+  const html = renderMarkdown('```js\nconst html = "<img src=x onerror=alert(1)>"; // & comment\n```', source);
+  assert.match(html, /class="hljs-string"/);
+  assert.doesNotMatch(html, /<img/);
+  assert.match(html.replace(/<\/?span\b[^>]*>/g, ""), /const html = &quot;&lt;img src=x onerror=alert\(1\)&gt;&quot;; \/\/ &amp; comment/);
 });

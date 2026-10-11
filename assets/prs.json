@@ -1,6 +1,38 @@
 {
   "generatedAt": "2026-10-09",
   "profile": "https://github.com/222twotwotwo",
+  "projects": [
+    {
+      "org": "oceanbase",
+      "repo": "powercontext",
+      "summary": "完善长期记忆的容量管理，修复 Windows 下 Hook 的 Unicode 提示兼容问题。"
+    },
+    {
+      "org": "AlexStocks",
+      "repo": "getty",
+      "summary": "完善客户端重连与连接关闭流程，修复 WebSocket 连接和会话回调问题。"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-getty",
+      "summary": "围绕网络连接稳定性，修复关闭死锁、重连与回调问题，完善异常处理和代码质量。"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-go-pixiu",
+      "summary": "修复网关路由匹配问题，并补充单元测试。"
+    },
+    {
+      "org": "apache",
+      "repo": "dubbo-go-pixiu-samples",
+      "summary": "完善 HTTP 代理示例与健康检查，修正代码检查问题，补充 SAML 配置说明。"
+    },
+    {
+      "org": "sykesP42",
+      "repo": "AutoToon",
+      "summary": "完善图像对比度与主色调的自动调节，整理项目结构并补充插件、ONNX 相关文件和图片资源。"
+    }
+  ],
   "prs": [
     {
       "org": "oceanbase",
