@@ -1,5 +1,5 @@
 ---
-title: 变量遮蔽与 32 位 int 的常见问题
+title: 识别变量遮蔽
 date: 2026-08-04
 category: Go 后端
 tags: Go, 变量遮蔽, int, 整数溢出

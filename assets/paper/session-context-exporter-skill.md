@@ -1,5 +1,5 @@
 ---
-title: 会话上下文导出 Skill：把一次协作变成下一次可继续的起点
+title: 导出会话上下文
 date: 2026-07-12
 category: Codex Skill
 tags: 我的skill, Codex, 上下文, 自动化

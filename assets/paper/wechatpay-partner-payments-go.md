@@ -1,5 +1,5 @@
 ---
-title: 微信支付服务商模式接入：五种支付方式与 Go 示例
+title: 接入微信支付
 date: 2026-10-11
 category: Go 后端
 tags: Go, 微信支付, 支付, APIv3, 服务商模式

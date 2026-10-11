@@ -1,5 +1,5 @@
 ---
-title: 分层与 DDD、TDD 与 SDD、瀑布与敏捷：两两成对的软件工程方法论
+title: 对比工程方法
 date: 2026-10-09
 category: 软件工程
 tags: DDD, 架构, TDD, SDD, 敏捷开发

@@ -1,5 +1,5 @@
 ---
-title: 项目生命周期脚本 Skill：让启动和停止变成可复用能力
+title: 管理项目生命周期
 date: 2026-07-11
 category: Codex Skill
 tags: 我的skill, Codex, 自动化

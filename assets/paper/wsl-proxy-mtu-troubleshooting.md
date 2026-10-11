@@ -1,5 +1,5 @@
 ---
-title: WSL + 代理环境下网络请求卡住：一次 MTU 问题排查记录
+title: 修复 MTU 网络
 date: 2026-07-27
 category: 网络排障
 tags: WSL, 代理, MTU, Git, HTTPS

@@ -1,5 +1,5 @@
 ---
-title: go-zero 入门：从安装 goctl 到生成 API 与 Model
+title: 搭建 go-zero API
 date: 2026-07-27
 category: Go 后端
 tags: Go, go-zero, goctl, 微服务

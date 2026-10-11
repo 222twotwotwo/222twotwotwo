@@ -1,5 +1,5 @@
 ---
-title: nana：把小说、漫画、音乐和番剧装进同一个本地主页
+title: 整理本地内容
 date: 2026-10-09
 category: 工具折腾
 tags: Vue, Node.js, 个人项目, IndexedDB, 爬虫

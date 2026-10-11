@@ -1,5 +1,5 @@
 ---
-title: First Skill：让 Codex 按细步骤推进，而不是一口气跑完
+title: 拆解 Codex 任务
 date: 2026-08-19
 category: Codex Skill
 tags: 我的skill, Codex, SDD, 工作流

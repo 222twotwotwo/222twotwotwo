@@ -1,5 +1,5 @@
 ---
-title: Git 作者信息要和 gh 账号保持一致
+title: 对齐 Git 作者
 date: 2026-08-24
 category: Git 协作
 tags: Git, GitHub, gh, CLA

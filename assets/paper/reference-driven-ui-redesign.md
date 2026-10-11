@@ -1,5 +1,5 @@
 ---
-title: 从「AI 味」到暖白社论风：一次参考站驱动的 UI 风格迭代
+title: 重做参考 UI
 date: 2026-09-21
 category: UI 设计
 tags: UI 设计, 设计系统, 前端, 提示词

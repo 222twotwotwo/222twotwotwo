@@ -1,5 +1,5 @@
 ---
-title: WSL 也能有完整的 GUI 开发体验：DSH 工作台 + VS Code Remote
+title: 搭建 WSL 图形开发
 date: 2026-09-02
 category: 开发环境
 tags: WSL, Windows, VS Code, DSH

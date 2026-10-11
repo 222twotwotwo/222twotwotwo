@@ -1,5 +1,5 @@
 ---
-title: Sunshine + Moonlight：把 iPad 当作 Windows 扩展屏
+title: 扩展 Windows 屏幕
 date: 2026-08-04
 category: 工具折腾
 tags: Windows, iPad, Sunshine, Moonlight, 副屏
