@@ -1,5 +1,7 @@
 # Logo Sources
 
+- `sai-logo.jpg`: PaintTool SAI product mark displayed on SYSTEMAX's official SAI2 development page, https://www.systemax.jp/en/sai/devdept.html (asset: https://www.systemax.jp/image/sai_logo.jpg). Used in the drawing article's tool-history panel; it does not identify the current tablet application.
+
 - `git-icon.svg`: Git official logo download, https://git-scm.com/images/logos/downloads/Git-Icon-1788C.svg
 - `go-logo.svg`: Go official brand asset, https://go.dev/blog/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg
 - `go-zero-logo.webp`: go-zero official website logo asset, https://go-zero.dev/_astro/logo.D3t9r_YR_uToCh.webp
