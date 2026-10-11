@@ -32,3 +32,6 @@
 - `swe-methods-cover-inline.svg`: local composite cover for the "分层与 DDD、TDD 与 SDD、瀑布与敏捷" article.
 - `ddd-vs-layers-inline.svg`: local architecture comparison diagram for that article.
 - `waterfall-agile-inline.svg`: local process comparison diagram for that article.
+- `wechat-logo.svg`: WeChat brand icon via Simple Icons, https://unpkg.com/simple-icons.org/wechat (currently unused, kept as asset)
+- `wechatpay-logo.png`: WeChat Pay official brand LOGO, downloaded from the official docs page, https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/sdk-logo.html (direct: https://wx.gtimg.com/outwxgtimg/imgs/logo/wxpaylogo_xxxhdpi.png)
+- `wechatpay-go-cover.png`: local composite cover for the "微信支付服务商模式接入" article, made from `wechatpay-logo.png` and `go-logo.svg`.
