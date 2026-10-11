@@ -5,32 +5,134 @@
     {
       "org": "oceanbase",
       "repo": "powercontext",
-      "summary": "完善长期记忆的容量管理，修复 Windows 下 Hook 的 Unicode 提示兼容问题。"
+      "summary": "完善长期记忆的容量管理，修复 Windows 下 Hook 的 Unicode 提示兼容问题。",
+      "article": "./assets/contributions/powercontext.md",
+      "logos": [
+        {
+          "name": "PowerContext",
+          "file": "powercontext-logo.png"
+        },
+        {
+          "name": "OceanBase",
+          "file": "oceanbase-logo.png"
+        },
+        {
+          "name": "Python",
+          "file": "python-logo.svg"
+        },
+        {
+          "name": "SQLite",
+          "file": "sqlite-logo.svg"
+        },
+        {
+          "name": "Windows",
+          "file": "windows-logo.svg"
+        },
+        {
+          "name": "Codex / OpenAI",
+          "file": "openai-logo.svg"
+        },
+        {
+          "name": "Claude Code",
+          "file": "claude-logo.svg"
+        }
+      ]
     },
     {
       "org": "AlexStocks",
       "repo": "getty",
-      "summary": "完善客户端重连与连接关闭流程，修复 WebSocket 连接和会话回调问题。"
+      "summary": "完善客户端重连与连接关闭流程，修复 WebSocket 连接和会话回调问题。",
+      "article": "./assets/contributions/getty.md",
+      "logos": [
+        {
+          "name": "Go",
+          "file": "go-logo.svg"
+        }
+      ]
     },
     {
       "org": "apache",
       "repo": "dubbo-getty",
-      "summary": "围绕网络连接稳定性，修复关闭死锁、重连与回调问题，完善异常处理和代码质量。"
+      "summary": "围绕网络连接稳定性，修复关闭死锁、重连与回调问题，完善异常处理和代码质量。",
+      "article": "./assets/contributions/dubbo-getty.md",
+      "logos": [
+        {
+          "name": "Apache Dubbo",
+          "file": "dubbo-logo.png"
+        },
+        {
+          "name": "Go",
+          "file": "go-logo.svg"
+        },
+        {
+          "name": "GitHub Actions",
+          "file": "githubactions-logo.svg"
+        }
+      ]
     },
     {
       "org": "apache",
       "repo": "dubbo-go-pixiu",
-      "summary": "修复网关路由匹配问题，并补充单元测试。"
+      "summary": "修复网关路由匹配问题，并补充单元测试。",
+      "article": "./assets/contributions/dubbo-go-pixiu.md",
+      "logos": [
+        {
+          "name": "Apache Dubbo Pixiu",
+          "file": "pixiu-logo.png"
+        },
+        {
+          "name": "Go",
+          "file": "go-logo.svg"
+        },
+        {
+          "name": "Open Policy Agent",
+          "file": "opa-logo.png"
+        }
+      ]
     },
     {
       "org": "apache",
       "repo": "dubbo-go-pixiu-samples",
-      "summary": "完善 HTTP 代理示例与健康检查，修正代码检查问题，补充 SAML 配置说明。"
+      "summary": "完善 HTTP 代理示例与健康检查，修正代码检查问题，补充 SAML 配置说明。",
+      "article": "./assets/contributions/dubbo-go-pixiu-samples.md",
+      "logos": [
+        {
+          "name": "Apache Dubbo Pixiu",
+          "file": "pixiu-logo.png"
+        },
+        {
+          "name": "Go",
+          "file": "go-logo.svg"
+        },
+        {
+          "name": "Keycloak",
+          "file": "keycloak-logo.svg"
+        }
+      ]
     },
     {
       "org": "sykesP42",
       "repo": "AutoToon",
-      "summary": "完善图像对比度与主色调的自动调节，整理项目结构并补充插件、ONNX 相关文件和图片资源。"
+      "summary": "完善图像对比度与主色调的自动调节，整理项目结构并补充插件、ONNX 相关文件和图片资源。",
+      "article": "./assets/contributions/autotoon.md",
+      "logos": [
+        {
+          "name": "Unreal Engine",
+          "file": "unrealengine-logo.svg"
+        },
+        {
+          "name": "ONNX",
+          "file": "onnx-logo.svg"
+        },
+        {
+          "name": "PyTorch",
+          "file": "pytorch-logo.svg"
+        },
+        {
+          "name": "Python",
+          "file": "python-logo.svg"
+        }
+      ]
     }
   ],
   "prs": [

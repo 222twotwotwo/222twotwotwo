@@ -35,3 +35,17 @@
 - `wechat-logo.svg`: WeChat brand icon via Simple Icons, https://unpkg.com/simple-icons.org/wechat (currently unused, kept as asset)
 - `wechatpay-logo.png`: WeChat Pay official brand LOGO, downloaded from the official docs page, https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/sdk-logo.html (direct: https://wx.gtimg.com/outwxgtimg/imgs/logo/wxpaylogo_xxxhdpi.png)
 - `wechatpay-go-cover.png`: local composite cover for the "微信支付服务商模式接入" article, made from `wechatpay-logo.png` and `go-logo.svg`.
+
+- `powercontext-logo.png`: PowerContext official dashboard brand asset, https://github.com/oceanbase/powercontext/blob/master/src/powercontext/server/dashboard/static/brand/powercontext-color.png
+- `pixiu-logo.png`: Apache Dubbo Pixiu official README logo, https://github.com/apache/dubbo-go-pixiu/blob/develop/docs/images/pixiu-logo-v4.png
+- `oceanbase-logo.png`: OceanBase official GitHub organization avatar, https://github.com/oceanbase
+- `opa-logo.png`: Open Policy Agent official GitHub organization avatar, https://github.com/open-policy-agent
+- `windows-logo.svg`: Windows 11 brand icon via Devicon, https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows11/windows11-original.svg
+- `python-logo.svg`: brand icon via Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/python.svg
+- `claude-logo.svg`: brand icon via Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/claude.svg
+- `sqlite-logo.svg`: brand icon via Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/sqlite.svg
+- `keycloak-logo.svg`: brand icon via Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/keycloak.svg
+- `onnx-logo.svg`: brand icon via Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/onnx.svg
+- `unrealengine-logo.svg`: brand icon via Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/unrealengine.svg
+- `pytorch-logo.svg`: brand icon via Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/pytorch.svg
+- `githubactions-logo.svg`: brand icon via Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/githubactions.svg

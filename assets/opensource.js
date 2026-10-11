@@ -13,7 +13,7 @@ async function loadContributions() {
         <article class="contribution-item">
           <h3 class="contribution-project">
             <span class="contribution-owner">${escapeHtml(project.org)}</span>
-            <a href="https://github.com/${encodeURIComponent(project.org)}/${encodeURIComponent(project.repo)}" target="_blank" rel="noopener">${escapeHtml(project.repo)}</a>
+            <a href="./contribution.html?project=${encodeURIComponent(`${project.org}/${project.repo}`)}" aria-label="阅读 ${escapeHtml(project.repo)} 的贡献详情">${escapeHtml(project.repo)}</a>
           </h3>
           <p class="contribution-summary">${escapeHtml(project.summary)}</p>
         </article>`
