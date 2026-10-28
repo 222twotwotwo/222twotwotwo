@@ -106,3 +106,7 @@ Client 是用户读写文件的入口：先向 Master 请求元数据，再直�
 ## 参考文献
 
 - Sanjay Ghemawat, Howard Gobioff, Shun-Tak Leung. [The Google File System](https://pdos.csail.mit.edu/6.824/papers/gfs.pdf). SOSP 2003.
+
+## 项目源码
+
+- [6.824 项目源码](https://github.com/222twotwotwo/222twotwotwo/tree/main/6.824)
