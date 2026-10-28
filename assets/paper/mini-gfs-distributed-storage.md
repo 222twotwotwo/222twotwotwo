@@ -4,7 +4,7 @@ date: 2026-10-28
 category: Go 后端
 tags: Go, 分布式存储, GFS, 副本, Master, ChunkServer
 readTime: 3 分钟阅读
-summary: 用 Go 标准库实现最简的 GFS 风格存储系统：Master 只存元数据，ChunkServer 存块，Client 自己切块并写副本。笔记记录了架构、可用性/可扩展性/一致性三个取舍，以及 Master、ChunkServer、Client 的实现细节。
+summary: 用 Go 标准库实现最简的 GFS 风格存储系统
 cover: ../images/logos/go-logo.svg
 ---
 

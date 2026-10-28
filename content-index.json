@@ -7,8 +7,8 @@
       "slug": "mini-gfs-distributed-storage",
       "type": "file",
       "title": "实现最简分布式存储系统",
-      "description": "用 Go 标准库实现最简的 GFS 风格存储系统：Master 只存元数据，ChunkServer 存块，Client 自己切块并写副本。笔记记录了架构、可用性/可扩展性/一致性三个取舍，以及 Master、ChunkServer、Client 的实现细节。",
-      "summary": "用 Go 标准库实现最简的 GFS 风格存储系统：Master 只存元数据，ChunkServer 存块，Client 自己切块并写副本。笔记记录了架构、可用性/可扩展性/一致性三个取舍，以及 Master、ChunkServer、Client 的实现细节。",
+      "description": "用 Go 标准库实现最简的 GFS 风格存储系统",
+      "summary": "用 Go 标准库实现最简的 GFS 风格存储系统",
       "date": "2026-10-28",
       "category": "Go 后端",
       "tags": [
@@ -21,11 +21,11 @@
       ],
       "readTime": "3 分钟阅读",
       "readingTime": 3,
-      "excerpt": "用 Go 标准库实现最简的 GFS 风格存储系统：Master 只存元数据，ChunkServer 存块，Client 自己切块并写副本。笔记记录了架构、可用性/可扩展性/一致性三个取舍，以及 Master、ChunkServer、Client 的实现细节。",
+      "excerpt": "用 Go 标准库实现最简的 GFS 风格存储系统",
       "cover": "../images/logos/go-logo.svg",
       "contentType": "post",
       "hidden": false,
-      "markdown": "---\ntitle: 实现最简分布式存储系统\ndate: 2026-10-28\ncategory: Go 后端\ntags: Go, 分布式存储, GFS, 副本, Master, ChunkServer\nreadTime: 3 分钟阅读\nsummary: 用 Go 标准库实现最简的 GFS 风格存储系统：Master 只存元数据，ChunkServer 存块，Client 自己切块并写副本。笔记记录了架构、可用性/可扩展性/一致性三个取舍，以及 Master、ChunkServer、Client 的实现细节。\ncover: ../images/logos/go-logo.svg\n---\n\n用 Go 标准库实现最简的 GFS 风格存储系统\n\n## **架构**\n\n![架构图：Client 先向 Master 请求元数据，拿到 chunk 位置后直接与多个 ChunkServer 读写数据](../images/logos/gfs-architecture-inline.svg)\n\n系统里只有三类角色，其中 ChunkServer 可以部署任意多个：\n\n- **Client**：先向 Master 请求元数据，拿到 chunk 位置后，直接和 ChunkServer 读写数据。\n- **Master**：控制平面，只保存文件名、大小、chunk ID 和副本位置。\n- **ChunkServer**：数据平面，真正存放 chunk 数据，每个节点只负责一部分 chunk。\n\n关键在于数据不经过 Master：控制流和数据流分开，Master 才不会成为带宽瓶颈。同一个 chunk 会按副本数写到不同的 ChunkServer 上，位置按 `(i+j) % len(servers)` 轮转取，相邻 chunk 的副本不会挤在同一台机器上。\n\n## 环境\n\n- **编译器**：Go 1.22\n- **操作系统**：Windows 11\n\n*本次用多进程模拟多主机环境，通信协议使用 HTTP*\n\n-------\n\n接下里讲解本系统有关分布式的几个重要取舍：\n- 可用性（容错）\n- 可扩展性（可以通过增加节点来提升性能或存储容量）\n- 一致性（数据的一致性）\n\n### 可用性\n\nChunkServer 采用多节点部署，每个节点负责存储部分 chunk，同一个 chunk 按副本数存多份。当一个节点故障时，读请求可以退到其他副本继续服务，整体仍然可用。\n\n**以下是可扩展内容（本次没有实现）**\n\n- **master节点:** 采用active-standby模式,只有一个节点（Active）对外提供读写服务；另一个节点（Standby）处于待命状态，不承接业务流量，只同步数据。\n\n流程：\n\n1. 正常运行：所有业务请求打到 Active；Standby 只持续同步数据，不处理业务读写，资源闲置。\n2. 故障检测：当 Active 宕机或失联，调度器（VIP、keepalived、etcd、控制器）感知故障。\n3. 故障切换（Failover）：把流量切到 Standby，Standby 升级为新的 Active，对外提供服务。\n4. 旧主恢复后：一般变成新的 Standby，也有少数方案会切回去，称为回切（Failback）。\n5. 风险: 脑裂，可能同时存在多个 Active 在活跃。\n\n### 可扩展性\n\nChunkServer 采用水平扩展，增加 ChunkServer 节点即可提升存储容量。性能方面本项目没有提升：写入是逐块、逐副本串行发起的，加机器主要加的是容量，不是吞吐。\n\n### 一致性\n\n- **副本间强一致**：Put 要求全部副本写成功才 commit，缺任何一个就报错，因此读任意副本拿到的数据都相同，不存在\"主写成功、从没写成功\"的中间态。\n- **提交后才可见**：commit 把文件从 pending 移入 files 之后才对外可查，两张表都由 `sync.RWMutex` 保护，lookup 不会读到半状态。\n\n## 实现细节\n\n### 1. Master\n\n字段设计：\n\n```go\ntype Master struct {\n\tmu        sync.RWMutex\n\tservers   []string\n\tchunkSize int\n\treplicas  int\n\tfiles     map[string]File\n\tpending   map[string]File\n}\n```\n\n`NewMaster` 接收服务器列表、块大小、副本数三个参数，其中块大小和副本数由命令行 `flag` 传入：**chunkSize** 可配置分片大小，默认 1024 KB（1 MiB）；**replicas** 可配置副本数，默认 2。\n\nMaster 对外提供四个 handler：\n\n- **allocate**：分配 chunk 位置，把文件写入 pending。\n- **commit**：提交文件，把文件从 pending 移入 files。\n- **lookup**：查找单个文件的元数据。\n- **list**：列出所有已提交的文件。\n\n### 2. ChunkServer\n\nChunkServer 对 Client 提供块的读写，主要是 put（推送文件）和 get（拉取文件）。\n\n覆盖写走的是逻辑删除而不是物理删除：新的 put 会写入全新的块，旧块保持不动。好处是 put 失败时旧文件依然可读，代价是旧块需要另外回收，本项目没有做。\n\n### 3. Client\n\nClient 是用户读写文件的入口：先向 Master 请求元数据，再直接向 ChunkServer 读写数据。\n\n对外提供三个命令：\n\n- `put`：写入文件\n- `get`：获取文件\n- `ls`：列出所有文件元数据\n\n## 参考文献\n\n- Sanjay Ghemawat, Howard Gobioff, Shun-Tak Leung. [The Google File System](https://pdos.csail.mit.edu/6.824/papers/gfs.pdf). SOSP 2003.\n"
+      "markdown": "---\ntitle: 实现最简分布式存储系统\ndate: 2026-10-28\ncategory: Go 后端\ntags: Go, 分布式存储, GFS, 副本, Master, ChunkServer\nreadTime: 3 分钟阅读\nsummary: 用 Go 标准库实现最简的 GFS 风格存储系统\ncover: ../images/logos/go-logo.svg\n---\n\n用 Go 标准库实现最简的 GFS 风格存储系统\n\n## **架构**\n\n![架构图：Client 先向 Master 请求元数据，拿到 chunk 位置后直接与多个 ChunkServer 读写数据](../images/logos/gfs-architecture-inline.svg)\n\n系统里只有三类角色，其中 ChunkServer 可以部署任意多个：\n\n- **Client**：先向 Master 请求元数据，拿到 chunk 位置后，直接和 ChunkServer 读写数据。\n- **Master**：控制平面，只保存文件名、大小、chunk ID 和副本位置。\n- **ChunkServer**：数据平面，真正存放 chunk 数据，每个节点只负责一部分 chunk。\n\n关键在于数据不经过 Master：控制流和数据流分开，Master 才不会成为带宽瓶颈。同一个 chunk 会按副本数写到不同的 ChunkServer 上，位置按 `(i+j) % len(servers)` 轮转取，相邻 chunk 的副本不会挤在同一台机器上。\n\n## 环境\n\n- **编译器**：Go 1.22\n- **操作系统**：Windows 11\n\n*本次用多进程模拟多主机环境，通信协议使用 HTTP*\n\n-------\n\n接下里讲解本系统有关分布式的几个重要取舍：\n- 可用性（容错）\n- 可扩展性（可以通过增加节点来提升性能或存储容量）\n- 一致性（数据的一致性）\n\n### 可用性\n\nChunkServer 采用多节点部署，每个节点负责存储部分 chunk，同一个 chunk 按副本数存多份。当一个节点故障时，读请求可以退到其他副本继续服务，整体仍然可用。\n\n**以下是可扩展内容（本次没有实现）**\n\n- **master节点:** 采用active-standby模式,只有一个节点（Active）对外提供读写服务；另一个节点（Standby）处于待命状态，不承接业务流量，只同步数据。\n\n流程：\n\n1. 正常运行：所有业务请求打到 Active；Standby 只持续同步数据，不处理业务读写，资源闲置。\n2. 故障检测：当 Active 宕机或失联，调度器（VIP、keepalived、etcd、控制器）感知故障。\n3. 故障切换（Failover）：把流量切到 Standby，Standby 升级为新的 Active，对外提供服务。\n4. 旧主恢复后：一般变成新的 Standby，也有少数方案会切回去，称为回切（Failback）。\n5. 风险: 脑裂，可能同时存在多个 Active 在活跃。\n\n### 可扩展性\n\nChunkServer 采用水平扩展，增加 ChunkServer 节点即可提升存储容量。性能方面本项目没有提升：写入是逐块、逐副本串行发起的，加机器主要加的是容量，不是吞吐。\n\n### 一致性\n\n- **副本间强一致**：Put 要求全部副本写成功才 commit，缺任何一个就报错，因此读任意副本拿到的数据都相同，不存在\"主写成功、从没写成功\"的中间态。\n- **提交后才可见**：commit 把文件从 pending 移入 files 之后才对外可查，两张表都由 `sync.RWMutex` 保护，lookup 不会读到半状态。\n\n## 实现细节\n\n### 1. Master\n\n字段设计：\n\n```go\ntype Master struct {\n\tmu        sync.RWMutex\n\tservers   []string\n\tchunkSize int\n\treplicas  int\n\tfiles     map[string]File\n\tpending   map[string]File\n}\n```\n\n`NewMaster` 接收服务器列表、块大小、副本数三个参数，其中块大小和副本数由命令行 `flag` 传入：**chunkSize** 可配置分片大小，默认 1024 KB（1 MiB）；**replicas** 可配置副本数，默认 2。\n\nMaster 对外提供四个 handler：\n\n- **allocate**：分配 chunk 位置，把文件写入 pending。\n- **commit**：提交文件，把文件从 pending 移入 files。\n- **lookup**：查找单个文件的元数据。\n- **list**：列出所有已提交的文件。\n\n### 2. ChunkServer\n\nChunkServer 对 Client 提供块的读写，主要是 put（推送文件）和 get（拉取文件）。\n\n覆盖写走的是逻辑删除而不是物理删除：新的 put 会写入全新的块，旧块保持不动。好处是 put 失败时旧文件依然可读，代价是旧块需要另外回收，本项目没有做。\n\n### 3. Client\n\nClient 是用户读写文件的入口：先向 Master 请求元数据，再直接向 ChunkServer 读写数据。\n\n对外提供三个命令：\n\n- `put`：写入文件\n- `get`：获取文件\n- `ls`：列出所有文件元数据\n\n## 参考文献\n\n- Sanjay Ghemawat, Howard Gobioff, Shun-Tak Leung. [The Google File System](https://pdos.csail.mit.edu/6.824/papers/gfs.pdf). SOSP 2003.\n"
     },
     {
       "name": "first-skill.md",
@@ -442,8 +442,8 @@
       "slug": "mini-gfs-distributed-storage",
       "type": "file",
       "title": "实现最简分布式存储系统",
-      "description": "用 Go 标准库实现最简的 GFS 风格存储系统：Master 只存元数据，ChunkServer 存块，Client 自己切块并写副本。笔记记录了架构、可用性/可扩展性/一致性三个取舍，以及 Master、ChunkServer、Client 的实现细节。",
-      "summary": "用 Go 标准库实现最简的 GFS 风格存储系统：Master 只存元数据，ChunkServer 存块，Client 自己切块并写副本。笔记记录了架构、可用性/可扩展性/一致性三个取舍，以及 Master、ChunkServer、Client 的实现细节。",
+      "description": "用 Go 标准库实现最简的 GFS 风格存储系统",
+      "summary": "用 Go 标准库实现最简的 GFS 风格存储系统",
       "date": "2026-10-28",
       "category": "Go 后端",
       "tags": [
@@ -456,7 +456,7 @@
       ],
       "readTime": "3 分钟阅读",
       "readingTime": 3,
-      "excerpt": "用 Go 标准库实现最简的 GFS 风格存储系统：Master 只存元数据，ChunkServer 存块，Client 自己切块并写副本。笔记记录了架构、可用性/可扩展性/一致性三个取舍，以及 Master、ChunkServer、Client 的实现细节。",
+      "excerpt": "用 Go 标准库实现最简的 GFS 风格存储系统",
       "cover": "../images/logos/go-logo.svg",
       "contentType": "post",
       "hidden": false
