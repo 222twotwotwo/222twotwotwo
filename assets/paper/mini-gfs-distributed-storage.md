@@ -109,4 +109,4 @@ Client 是用户读写文件的入口：先向 Master 请求元数据，再直�
 
 ## 项目源码
 
-- [6.824 项目源码](https://github.com/222twotwotwo/222twotwotwo/tree/main/6.824)
+- [GFS 项目源码](https://github.com/222twotwotwo/222twotwotwo/tree/main/6.824/gfs)
