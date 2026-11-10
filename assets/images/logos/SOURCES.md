@@ -39,6 +39,7 @@
 - `wechatpay-go-cover.png`: local composite cover for the "微信支付服务商模式接入" article, made from `wechatpay-logo.png` and `go-logo.svg`.
 - `gfs-architecture-inline.svg`: local architecture diagram for the "实现最简分布式存储系统" article, drawn from the project's own Master/ChunkServer/Client design; the Go mark comes from `go-logo.svg`.
 - `mapreduce-architecture-inline.svg`: local architecture diagram for the "实现最简分布式计算框架" article, drawn from the project's own Coordinator/Worker design and its mermaid flowchart; the Go mark comes from `go-logo.svg`.
+- `raft-architecture-inline.svg`: local architecture diagram for the "实现最简 Raft 共识算法" article, drawn from the project's own client + three-peer design; the Go mark comes from `go-logo.svg`.
 
 - `powercontext-logo.png`: PowerContext official dashboard brand asset, https://github.com/oceanbase/powercontext/blob/master/src/powercontext/server/dashboard/static/brand/powercontext-color.png
 - `pixiu-logo.png`: Apache Dubbo Pixiu official README logo, https://github.com/apache/dubbo-go-pixiu/blob/develop/docs/images/pixiu-logo-v4.png
