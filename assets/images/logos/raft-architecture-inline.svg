@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600" role="img" aria-label="Mini Raft 架构：客户端轮询三个节点，节点之间互发 AppendEntries 与 RequestVote；金色边框的节点是当前任期的 leader">
-  <rect width="960" height="600" fill="#F6F2E9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" role="img" aria-label="Mini Raft 架构：客户端轮询三个节点，节点之间互发 AppendEntries 与 RequestVote；金色边框的节点是当前任期的 leader">
+  <rect width="960" height="500" fill="#F6F2E9"/>
 
   <defs>
     <marker id="raft-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
@@ -17,6 +17,7 @@
       <path fill="#00ACD7" d="M186.2,154.6c-9.1-0.2-17.4-2.8-24.4-8.8c-5.9-5.1-9.6-11.6-10.8-19.3c-1.8-11.3,1.3-21.3,8.1-30.2c7.3-9.6,16.1-14.6,28-16.7c10.2-1.8,19.8-0.8,28.5,5.1c7.9,5.4,12.8,12.7,14.1,22.3c1.7,13.5-2.2,24.5-11.5,33.9c-6.6,6.7-14.7,10.9-24,12.8C191.5,154.2,188.8,154.3,186.2,154.6z M210,114.2c-0.1-1.3-0.1-2.3-0.3-3.3c-1.8-9.9-10.9-15.5-20.4-13.3c-9.3,2.1-15.3,8-17.5,17.4c-1.8,7.8,2,15.7,9.2,18.9c5.5,2.4,11,2.1,16.3-0.6C205.2,129.2,209.5,122.8,210,114.2z"/>
     </g>
 
+    <g transform="translate(0 -24)">
     <rect x="48" y="260" width="160" height="84" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
     <text x="128" y="296" font-size="15" font-weight="700" text-anchor="middle" fill="#241E14">客户端 Clerk</text>
     <text x="128" y="318" font-size="11" text-anchor="middle" fill="#7C7361">失败就换下一个节点</text>
@@ -41,8 +42,7 @@
     <path d="M560 282 L676 176" stroke="#7C7361" stroke-width="1" fill="none" marker-start="url(#raft-arrow)" marker-end="url(#raft-arrow)"/>
     <path d="M560 322 L676 412" stroke="#7C7361" stroke-width="1" fill="none" marker-start="url(#raft-arrow)" marker-end="url(#raft-arrow)"/>
     <path d="M780 208 V384" stroke="#7C7361" stroke-width="1" fill="none" marker-start="url(#raft-arrow)" marker-end="url(#raft-arrow)"/>
+    </g>
 
-    <text x="48" y="508" font-size="11" fill="#7C7361">金色边框 = 当前任期的 leader；角色随选举变化，节点本身地位对等</text>
-    <text x="48" y="532" font-size="11" fill="#7C7361">节点之间：AppendEntries（心跳与日志）/ RequestVote；只有 leader 接受写请求</text>
   </g>
 </svg>
