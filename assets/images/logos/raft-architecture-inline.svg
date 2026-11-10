@@ -19,8 +19,7 @@
 
     <g transform="translate(0 -24)">
     <rect x="48" y="260" width="160" height="84" fill="#FFFDF8" stroke="#E5DECF" stroke-width="1"/>
-    <text x="128" y="296" font-size="15" font-weight="700" text-anchor="middle" fill="#241E14">客户端 Clerk</text>
-    <text x="128" y="318" font-size="11" text-anchor="middle" fill="#7C7361">失败就换下一个节点</text>
+    <text x="128" y="307" font-size="15" font-weight="700" text-anchor="middle" fill="#241E14">客户端 Clerk</text>
 
     <path d="M212 302 H352" stroke="#7C7361" stroke-width="1" fill="none" marker-end="url(#raft-arrow)"/>
     <path d="M200 266 L676 190" stroke="#7C7361" stroke-width="1" fill="none" marker-end="url(#raft-arrow)"/>
